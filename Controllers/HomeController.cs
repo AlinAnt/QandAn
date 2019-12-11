@@ -3,16 +3,24 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using QandAn.Models;
+using static QandAn.Areas.Identity.Pages.Account.RegisterModel;
 
 namespace QandAn.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly UserManager<AlinUser> _userManager;
+        public HomeController(UserManager<AlinUser> userManager)
         {
-            return View();
+            _userManager = userManager;
+        }
+        public async Task<IActionResult> Index()
+        { 
+            var user = await _userManager.GetUserAsync(User);
+            return View(user);
         }
 
         // public IActionResult Privacy()

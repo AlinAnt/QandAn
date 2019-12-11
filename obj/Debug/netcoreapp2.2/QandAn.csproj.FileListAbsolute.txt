@@ -1,4 +1,3 @@
-/home/alina/QandAn/bin/Debug/netcoreapp2.2/app.db
 /home/alina/QandAn/bin/Debug/netcoreapp2.2/QandAn.deps.json
 /home/alina/QandAn/bin/Debug/netcoreapp2.2/QandAn.runtimeconfig.json
 /home/alina/QandAn/bin/Debug/netcoreapp2.2/QandAn.runtimeconfig.dev.json
@@ -24,6 +23,8 @@
 /home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Areas/Identity/Pages/_ViewStart.g.cshtml.cs
 /home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Views/Home/Index.g.cshtml.cs
 /home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Views/Home/Privacy.g.cshtml.cs
+/home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Views/QuestionsAndAnswer/AnswerListPartial.g.cshtml.cs
+/home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Views/QuestionsAndAnswer/AnswerPartial..g.cshtml.cs
 /home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Views/QuestionsAndAnswer/Create.g.cshtml.cs
 /home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Views/QuestionsAndAnswer/Delete.g.cshtml.cs
 /home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Views/QuestionsAndAnswer/Details.g.cshtml.cs

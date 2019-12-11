@@ -41,6 +41,9 @@ namespace QandAn.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
+            [Display(Name = "Name")]
+            public string Name { get; set; }
+            [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -62,14 +65,15 @@ namespace QandAn.Areas.Identity.Pages.Account
             ReturnUrl = returnUrl;
         }
 
-        public class AlinUser :IdentityUser 
+        public class AlinUser : IdentityUser 
         {
             [Required]
             [Display(Name = "Name")]
             public string Name { get; set; }
             public virtual List<Question> UserDialogs { get; } = new List<Question>();
         }
-        public async Task<IActionResult> OnPostAsync(string returnUrl = null)
+        
+        public async Task<IActionResult> OnPostAsync(string returnUrl = null) 
         {
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)

@@ -26,6 +26,6 @@ namespace QandAn.Models
         public virtual DateTime QuestionCreateTime{ get; set;}
 
         // Похожие ответы
-        public virtual IList<Answer> Answers {get; set; }
+        public virtual List<Answer> Answers {get; set; }
     }
 }

@@ -36,6 +36,11 @@ namespace QandAn.Areas.Identity.Pages.Account
 
         public class InputModel
         {
+
+            [Required]
+            [Display(Name = "Name")]
+            public string Name { get; set; }
+            
             [Required]
             [EmailAddress]
             public string Email { get; set; }

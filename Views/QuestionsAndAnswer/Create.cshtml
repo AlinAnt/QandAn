@@ -1,9 +1,10 @@
 @using Microsoft.AspNetCore.Identity
 @model QandAn.Models.Question
+@inject UserManager<QandAn.Areas.Identity.Pages.Account.RegisterModel.AlinUser> UserManager
 
 @{
     ViewData["Title"] = "Create";
-    //string creator = User.Identity.
+    string creator = User.Identity.Name;
 }
 
 <h1>Create</h1>
@@ -15,6 +16,7 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <h2>@creator</h2>
                 <label asp-for="QuestionCreator" class="control-label"></label>
                 <input asp-for="QuestionCreator" class="form-control" />
                 <span asp-validation-for="QuestionCreator" class="text-danger"></span>
