@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace QandAn.Migrations
 {
-    public partial class AlinUser : Migration
+    public partial class FixedModels : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -157,19 +157,18 @@ namespace QandAn.Migrations
                 name: "Questions",
                 columns: table => new
                 {
-                    QuestionID = table.Column<int>(nullable: false)
+                    ID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    QuestionCreator = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: true),
                     QuestionContent = table.Column<string>(nullable: false),
-                    QuestionCreateTime = table.Column<DateTime>(nullable: false),
-                    AlinUserId = table.Column<string>(nullable: true)
+                    QuestionCreateTime = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Questions", x => x.QuestionID);
+                    table.PrimaryKey("PK_Questions", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Questions_AspNetUsers_AlinUserId",
-                        column: x => x.AlinUserId,
+                        name: "FK_Questions_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -179,28 +178,39 @@ namespace QandAn.Migrations
                 name: "Answers",
                 columns: table => new
                 {
-                    AnswerID = table.Column<int>(nullable: false)
+                    ID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     QuestionID = table.Column<int>(nullable: false),
-                    AnswerCreator = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: true),
                     AnswerContent = table.Column<string>(nullable: false),
                     AnswerTime = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Answers", x => x.AnswerID);
+                    table.PrimaryKey("PK_Answers", x => x.ID);
                     table.ForeignKey(
                         name: "FK_Answers_Questions_QuestionID",
                         column: x => x.QuestionID,
                         principalTable: "Questions",
-                        principalColumn: "QuestionID",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Answers_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Answers_QuestionID",
                 table: "Answers",
                 column: "QuestionID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Answers_UserId",
+                table: "Answers",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -240,9 +250,9 @@ namespace QandAn.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Questions_AlinUserId",
+                name: "IX_Questions_UserId",
                 table: "Questions",
-                column: "AlinUserId");
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

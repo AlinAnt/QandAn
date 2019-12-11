@@ -16,14 +16,14 @@ namespace QandAn.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<AlinUser> _signInManager;
+        private readonly UserManager<AlinUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
         public RegisterModel(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager,
+            UserManager<AlinUser> userManager,
+            SignInManager<AlinUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
@@ -70,7 +70,7 @@ namespace QandAn.Areas.Identity.Pages.Account
             [Required]
             [Display(Name = "Name")]
             public string Name { get; set; }
-            public virtual List<Question> UserDialogs { get; } = new List<Question>();
+            public virtual List<Question> Questions { get; } = new List<Question>();
         }
         
         public async Task<IActionResult> OnPostAsync(string returnUrl = null) 

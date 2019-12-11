@@ -2,12 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using QandAn.Data;
 using QandAn.Models;
-
+using static QandAn.Areas.Identity.Pages.Account.RegisterModel;
 
 namespace QandAn.Controllers
 {
@@ -16,16 +17,18 @@ namespace QandAn.Controllers
     {
         
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<AlinUser> _userManager;
 
-        public QuestionsAndAnswerController(ApplicationDbContext context)
+        public QuestionsAndAnswerController(ApplicationDbContext context, UserManager<AlinUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: QuestionsAndAnswer
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Questions.ToListAsync());
+            return View(await _context.Questions.Include(q => q.User).ToListAsync());
         }
 
         // GET: QuestionsAndAnswer/Details/5
@@ -37,7 +40,7 @@ namespace QandAn.Controllers
             }
 
             var question = await _context.Questions
-                .FirstOrDefaultAsync(m => m.QuestionID == id);
+                .FirstOrDefaultAsync(m => m.ID == id);
             if (question == null)
             {
                 return NotFound();
@@ -57,12 +60,18 @@ namespace QandAn.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("QuestionID,QuestionCreator,QuestionContent,QuestionCreateTime")] Question question)
+        public async Task<IActionResult> Create([Bind("ID,QuestionContent,QuestionCreateTime")] Question question)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(question);
+                var user = await _userManager.GetUserAsync(User);
+                question.User = user;
+                question.UserId = user.Id;
+            
+                _context.Questions.Add(question);
                 await _context.SaveChangesAsync();
+                user.Questions.Add(question);
+
                 return RedirectToAction(nameof(Index));
             }
             return View(question);
@@ -89,9 +98,9 @@ namespace QandAn.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("QuestionID,QuestionCreator,QuestionContent,QuestionCreateTime")] Question question)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,User,QuestionContent,QuestionCreateTime")] Question question)
         {
-            if (id != question.QuestionID)
+            if (id != question.ID)
             {
                 return NotFound();
             }
@@ -105,7 +114,7 @@ namespace QandAn.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!QuestionExists(question.QuestionID))
+                    if (!QuestionExists(question.ID))
                     {
                         return NotFound();
                     }
@@ -128,7 +137,7 @@ namespace QandAn.Controllers
             }
 
             var question = await _context.Questions
-                .FirstOrDefaultAsync(m => m.QuestionID == id);
+                .FirstOrDefaultAsync(m => m.ID == id);
             if (question == null)
             {
                 return NotFound();
@@ -150,7 +159,7 @@ namespace QandAn.Controllers
 
         private bool QuestionExists(int id)
         {
-            return _context.Questions.Any(e => e.QuestionID == id);
+            return _context.Questions.Any(e => e.ID == id);
         }
 
         public async Task<IActionResult> MoreAnswer(int? id)
@@ -168,7 +177,7 @@ namespace QandAn.Controllers
         }
 
           [HttpPost]
-        public async Task<IActionResult> CreateAnswer([Bind("AnswerID, AnswerCreator, QuestionID, AnswerContent")] Answer answer)
+        public async Task<IActionResult> CreateAnswer([Bind("ID,User,ID,AnswerContent")] Answer answer)
         {
             if (ModelState.IsValid)
             {

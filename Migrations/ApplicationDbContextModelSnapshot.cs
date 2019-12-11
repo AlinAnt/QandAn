@@ -182,42 +182,42 @@ namespace QandAn.Migrations
 
             modelBuilder.Entity("QandAn.Models.Answer", b =>
                 {
-                    b.Property<int>("AnswerID")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("AnswerContent")
                         .IsRequired();
 
-                    b.Property<string>("AnswerCreator");
-
                     b.Property<DateTime>("AnswerTime");
 
                     b.Property<int>("QuestionID");
 
-                    b.HasKey("AnswerID");
+                    b.Property<string>("UserId");
+
+                    b.HasKey("ID");
 
                     b.HasIndex("QuestionID");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Answers");
                 });
 
             modelBuilder.Entity("QandAn.Models.Question", b =>
                 {
-                    b.Property<int>("QuestionID")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<string>("AlinUserId");
 
                     b.Property<string>("QuestionContent")
                         .IsRequired();
 
                     b.Property<DateTime>("QuestionCreateTime");
 
-                    b.Property<string>("QuestionCreator");
+                    b.Property<string>("UserId");
 
-                    b.HasKey("QuestionID");
+                    b.HasKey("ID");
 
-                    b.HasIndex("AlinUserId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Questions");
                 });
@@ -273,13 +273,17 @@ namespace QandAn.Migrations
                         .WithMany("Answers")
                         .HasForeignKey("QuestionID")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("QandAn.Areas.Identity.Pages.Account.RegisterModel+AlinUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("QandAn.Models.Question", b =>
                 {
-                    b.HasOne("QandAn.Areas.Identity.Pages.Account.RegisterModel+AlinUser")
-                        .WithMany("UserDialogs")
-                        .HasForeignKey("AlinUserId");
+                    b.HasOne("QandAn.Areas.Identity.Pages.Account.RegisterModel+AlinUser", "User")
+                        .WithMany("Questions")
+                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }

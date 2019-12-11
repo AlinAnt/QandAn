@@ -1,3 +1,4 @@
+/home/alina/QandAn/bin/Debug/netcoreapp2.2/app.db
 /home/alina/QandAn/bin/Debug/netcoreapp2.2/QandAn.deps.json
 /home/alina/QandAn/bin/Debug/netcoreapp2.2/QandAn.runtimeconfig.json
 /home/alina/QandAn/bin/Debug/netcoreapp2.2/QandAn.runtimeconfig.dev.json

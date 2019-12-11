@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using QandAn.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using static QandAn.Areas.Identity.Pages.Account.RegisterModel;
 
 namespace QandAn
 {
@@ -38,7 +39,7 @@ namespace QandAn
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddDefaultIdentity<AlinUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 

@@ -3,7 +3,7 @@
 @{
     var answerList = new List<QandAn.Models.Answer>();
     answerList = Model.Answers;
-    var questionId = Model.QuestionID;
+    var questionId = Model.ID;
     ViewData["Title"] = "Details";
 }
 
@@ -14,10 +14,10 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.QuestionCreator)
+            @Html.DisplayNameFor(model => model.User)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.QuestionCreator)
+            @Html.DisplayFor(model => model.User)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.QuestionContent)
@@ -34,7 +34,7 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.QuestionID" >Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.ID" >Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
 
