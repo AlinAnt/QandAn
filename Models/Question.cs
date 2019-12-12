@@ -15,14 +15,14 @@ namespace QandAn.Models
 
         [Required]
         [Display(Name = "Вопрос")]
-        public virtual string QuestionContent{get; set;}
+        public string QuestionContent{get; set;}
  
         //Время создания вопроса
         [Display(Name = "Дата создания вопроса")]
         [DataType(DataType.Date)]
-        public virtual DateTime QuestionCreateTime{ get; set;}
+        public  DateTime QuestionCreateTime{ get; set;}
 
         // Похожие ответы
-        public virtual List<Answer> Answers {get; set; }
+        public  List<Answer> Answers {get; set; }
     }
 }

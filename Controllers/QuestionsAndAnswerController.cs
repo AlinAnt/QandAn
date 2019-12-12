@@ -30,17 +30,20 @@ namespace QandAn.Controllers
         {
             return View(await _context.Questions.Include(q => q.User).ToListAsync());
         }
-
-        // GET: QuestionsAndAnswer/Details/5
+        
+        
+        [HttpGet]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
-            var question = await _context.Questions
-                .FirstOrDefaultAsync(m => m.ID == id);
+            Question question = await _context.Questions
+                    .Include(u => u.Answers)
+                    .ThenInclude(u => u.User)
+                    .Where(d => d.ID == id)
+                    .FirstOrDefaultAsync();
             if (question == null)
             {
                 return NotFound();
@@ -55,19 +58,20 @@ namespace QandAn.Controllers
             return View();
         }
 
-        // POST: QuestionsAndAnswer/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,QuestionContent,QuestionCreateTime")] Question question)
         {
+            ViewBag.Answers = new Answer();
             if (ModelState.IsValid)
             {
                 var user = await _userManager.GetUserAsync(User);
                 question.User = user;
                 question.UserId = user.Id;
             
+                DateTime time = DateTime.Now;
+                question.QuestionCreateTime = time;
+
                 _context.Questions.Add(question);
                 await _context.SaveChangesAsync();
                 user.Questions.Add(question);
@@ -93,23 +97,23 @@ namespace QandAn.Controllers
             return View(question);
         }
 
-        // POST: QuestionsAndAnswer/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,User,QuestionContent,QuestionCreateTime")] Question question)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,QuestionContent")] Question question)
         {
             if (id != question.ID)
-            {
+            {   
                 return NotFound();
             }
+            var tempQuestion = await _context.Questions.FindAsync(id);
+            var user = await _userManager.GetUserAsync(User);
 
-            if (ModelState.IsValid)
+            if (ModelState.IsValid & tempQuestion.UserId == user.Id)
             {
                 try
-                {
-                    _context.Update(question);
+                {  
+                    tempQuestion.QuestionContent = question.QuestionContent;
+                    _context.Update(tempQuestion);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -128,7 +132,7 @@ namespace QandAn.Controllers
             return View(question);
         }
 
-        // GET: QuestionsAndAnswer/Delete/5
+
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -137,7 +141,7 @@ namespace QandAn.Controllers
             }
 
             var question = await _context.Questions
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FindAsync(id);
             if (question == null)
             {
                 return NotFound();
@@ -152,9 +156,14 @@ namespace QandAn.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var question = await _context.Questions.FindAsync(id);
-            _context.Questions.Remove(question);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            var user = await _userManager.GetUserAsync(User);
+            if (ModelState.IsValid & question.UserId == user.Id)
+            {
+                _context.Questions.Remove(question);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(question);
         }
 
         private bool QuestionExists(int id)
@@ -164,11 +173,13 @@ namespace QandAn.Controllers
 
         public async Task<IActionResult> MoreAnswer(int? id)
         {
-            if(id == null)
+            if (id == null)
             {
                 return NotFound();
             }
-            var question = await _context.Questions.FindAsync(id);
+
+            var question = await _context.Questions
+                .FindAsync(id);
             if (question == null)
             {
                 return NotFound();
@@ -177,18 +188,24 @@ namespace QandAn.Controllers
         }
 
           [HttpPost]
-        public async Task<IActionResult> CreateAnswer([Bind("ID,User,ID,AnswerContent")] Answer answer)
+        public async Task<IActionResult> CreateAnswer(string AnswerContent, int questionId)
         {
-            if (ModelState.IsValid)
-            {
-                answer.AnswerTime = DateTime.Now;
-                _context.Add(answer);
-                await _context.SaveChangesAsync();
+           
+                var user = await _userManager.GetUserAsync(User);
+                Question question = await _context.Questions
+                                        .Include(u => u.Answers)
+                                        .ThenInclude(u => u.User)
+                                        .Where(d => d.ID == questionId)
+                                        .FirstOrDefaultAsync();
                                   
-                                  
-            }
-            return RedirectToAction("Details", new { 
-                id = answer.QuestionID });
+                var answer = new Answer { AnswerContent = AnswerContent , User = user, Question = question };
+                _context.Answers.Add(answer);
+                _context.SaveChanges();
+
+                question.Answers.Add(answer);
+                _context.SaveChanges();
+
+            return RedirectToAction("Details", "QuestionsAndAnswer", new {id = questionId});
         }
 
         protected override void Dispose(bool disposing)

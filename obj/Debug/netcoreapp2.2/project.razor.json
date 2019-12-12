@@ -2996,11 +2996,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/home/alina/QandAn/Views/QuestionsAndAnswer/AnswerPartial..cshtml",
-      "TargetPath": "Views/QuestionsAndAnswer/AnswerPartial..cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "/home/alina/QandAn/Views/QuestionsAndAnswer/Create.cshtml",
       "TargetPath": "Views/QuestionsAndAnswer/Create.cshtml",
       "FileKind": "mvc"
@@ -3008,11 +3003,6 @@
     {
       "FilePath": "/home/alina/QandAn/Views/QuestionsAndAnswer/Delete.cshtml",
       "TargetPath": "Views/QuestionsAndAnswer/Delete.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/home/alina/QandAn/Views/QuestionsAndAnswer/AnswerListPartial.cshtml",
-      "TargetPath": "Views/QuestionsAndAnswer/AnswerListPartial.cshtml",
       "FileKind": "mvc"
     },
     {
