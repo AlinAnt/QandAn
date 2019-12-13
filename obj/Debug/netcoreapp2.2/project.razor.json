@@ -3056,11 +3056,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/home/alina/QandAn/Views/Home/Privacy.cshtml",
-      "TargetPath": "Views/Home/Privacy.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "/home/alina/QandAn/Views/QuestionsAndAnswer/Edit.cshtml",
       "TargetPath": "Views/QuestionsAndAnswer/Edit.cshtml",
       "FileKind": "mvc"

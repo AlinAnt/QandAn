@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -51,7 +52,7 @@ namespace QandAn.Controllers
 
             return View(question);
         }
-
+        [Authorize]
         // GET: QuestionsAndAnswer/Create
         public IActionResult Create()
         {
@@ -60,7 +61,7 @@ namespace QandAn.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,QuestionContent,QuestionCreateTime")] Question question)
+        public async Task<IActionResult> Create([Bind("ID,QuestionTitle, QuestionContent,QuestionCreateTime")] Question question)
         {
             ViewBag.Answers = new Answer();
             if (ModelState.IsValid)
@@ -81,7 +82,7 @@ namespace QandAn.Controllers
             return View(question);
         }
 
-        // GET: QuestionsAndAnswer/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -99,7 +100,7 @@ namespace QandAn.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,QuestionContent")] Question question)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,QuestionTitle, QuestionContent")] Question question)
         {
             if (id != question.ID)
             {   
@@ -112,6 +113,7 @@ namespace QandAn.Controllers
             {
                 try
                 {  
+                    tempQuestion.QuestionTitle = question.QuestionTitle;
                     tempQuestion.QuestionContent = question.QuestionContent;
                     _context.Update(tempQuestion);
                     await _context.SaveChangesAsync();

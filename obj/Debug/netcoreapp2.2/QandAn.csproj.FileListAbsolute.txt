@@ -23,7 +23,6 @@
 /home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Areas/Identity/Pages/_ViewImports.g.cshtml.cs
 /home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Areas/Identity/Pages/_ViewStart.g.cshtml.cs
 /home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Views/Home/Index.g.cshtml.cs
-/home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Views/Home/Privacy.g.cshtml.cs
 /home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Views/QuestionsAndAnswer/Create.g.cshtml.cs
 /home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Views/QuestionsAndAnswer/Delete.g.cshtml.cs
 /home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Views/QuestionsAndAnswer/Details.g.cshtml.cs

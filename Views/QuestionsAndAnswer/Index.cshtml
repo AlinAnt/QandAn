@@ -4,11 +4,17 @@
     ViewData["Title"] = "Question List";
 }
 
-<h1>Question List</h1>
-
+<h1>Question list</h1>
+<br>
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Create new question</a>
 </p>
+<!-- <form asp-controller="QuestionsAndAnswer" asp-action ="Index">
+    <p>
+        Title: <input type="text", name="searchString">
+        <input type="submit" value="Filter"/>
+    </p> 
+</form> -->
 <table class="table">
     <thead>
         <tr>
@@ -16,7 +22,7 @@
                 @Html.DisplayNameFor(model => model.User)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.QuestionContent)
+                @Html.DisplayNameFor(model => model.QuestionTitle)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.QuestionCreateTime)
@@ -32,7 +38,7 @@
                 @Html.DisplayFor(modelItem => item.User.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.QuestionContent)
+                @Html.DisplayFor(modelItem => item.QuestionTitle)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.QuestionCreateTime)
@@ -40,7 +46,8 @@
 
             <td>
                 <a asp-action="Details" asp-route-id="@item.ID">Details</a>
-                @if (item.User.Email == User.Identity.Name) {
+                @if (item.User.Email == User.Identity.Name)
+                {
                     <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> 
                     <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
                 }

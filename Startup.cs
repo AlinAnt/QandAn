@@ -71,7 +71,7 @@ namespace QandAn
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=QuestionsAndAnswer}/{action=Index}/{id?}");
             });
         }
     }

@@ -11,10 +11,15 @@ namespace QandAn.Models
         public int ID { get; set;}
 
         public string UserId { get; set; }
+
+        [Display(Name = "Создатель вопроса")]
         public AlinUser User { get; set; }
 
+        [Display(Name = "Заголовок вопроса")]
+        public string QuestionTitle {get; set;}
+
         [Required]
-        [Display(Name = "Вопрос")]
+        [Display(Name = "Содержимое вопроса")]
         public string QuestionContent{get; set;}
  
         //Время создания вопроса
