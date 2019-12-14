@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using QandAn.Models;
@@ -22,12 +24,16 @@ namespace QandAn.Controllers
             var user = await _userManager.GetUserAsync(User);
             return View(user);
         }
-
-        // public IActionResult Privacy()
+        [Authorize(Roles = "Admin")]
+        public IActionResult New()
+        {
+            return View("Вход только для админа");
+        }
+        // public IActionResult KnowRole()
         // {
-        //     return View();
+        //     string role = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value;
+        //     return Content($"ваша роль: {role}");
         // }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

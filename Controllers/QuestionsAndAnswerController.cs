@@ -13,22 +13,35 @@ using static QandAn.Areas.Identity.Pages.Account.RegisterModel;
 
 namespace QandAn.Controllers
 {
-   
+    
     public class QuestionsAndAnswerController : Controller
     {
         
         private readonly ApplicationDbContext _context;
         private readonly UserManager<AlinUser> _userManager;
-
-        public QuestionsAndAnswerController(ApplicationDbContext context, UserManager<AlinUser> userManager)
+        private readonly RoleManager<IdentityRole> _roleManager;
+        public QuestionsAndAnswerController(ApplicationDbContext context, UserManager<AlinUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _context = context;
             _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         // GET: QuestionsAndAnswer
         public async Task<IActionResult> Index()
         {
+            string[] roleNames = { "User", "Admin"};
+            IdentityResult roleResult;
+
+            foreach (var roleName in roleNames)
+            {
+                var roleExist = await _roleManager.RoleExistsAsync(roleName);
+                if (!roleExist)
+                {
+                    //create the roles and seed them to the database: Question 1
+                    roleResult = await _roleManager.CreateAsync(new IdentityRole(roleName));
+                }
+            }
             return View(await _context.Questions.Include(q => q.User).ToListAsync());
         }
         
@@ -52,7 +65,7 @@ namespace QandAn.Controllers
 
             return View(question);
         }
-        [Authorize]
+        [Authorize(Roles = "Admin,User")]
         // GET: QuestionsAndAnswer/Create
         public IActionResult Create()
         {
@@ -82,7 +95,7 @@ namespace QandAn.Controllers
             return View(question);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin,User")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -134,7 +147,7 @@ namespace QandAn.Controllers
             return View(question);
         }
 
-
+        [Authorize(Roles = "Admin,User")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -173,23 +186,24 @@ namespace QandAn.Controllers
             return _context.Questions.Any(e => e.ID == id);
         }
 
-        public async Task<IActionResult> MoreAnswer(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        // public async Task<IActionResult> MoreAnswer(int? id)
+        // {
+        //     if (id == null)
+        //     {
+        //         return NotFound();
+        //     }
 
-            var question = await _context.Questions
-                .FindAsync(id);
-            if (question == null)
-            {
-                return NotFound();
-            }
-            return PartialView("AnswerListPartial", question.Answers);
-        }
+        //     var question = await _context.Questions
+        //         .FindAsync(id);
+        //     if (question == null)
+        //     {
+        //         return NotFound();
+        //     }
+        //     return PartialView("AnswerListPartial", question.Answers);
+        // }
 
-          [HttpPost]
+        [HttpPost]
+        [Authorize(Roles = "Admin,User")]
         public async Task<IActionResult> CreateAnswer(string AnswerContent, int questionId)
         {
            

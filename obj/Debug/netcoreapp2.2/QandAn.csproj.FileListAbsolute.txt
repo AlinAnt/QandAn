@@ -41,3 +41,9 @@
 /home/alina/QandAn/obj/Debug/netcoreapp2.2/QandAn.dll
 /home/alina/QandAn/obj/Debug/netcoreapp2.2/QandAn.pdb
 /home/alina/QandAn/obj/Debug/netcoreapp2.2/QandAn.csproj.CopyComplete
+/home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Areas/Identity/Pages/Account/ConfirmEmail.g.cshtml.cs
+/home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Areas/Identity/Pages/Account/Manage/EnableAuthenticator.g.cshtml.cs
+/home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Areas/Identity/Pages/Account/Manage/_ManageNav.g.cshtml.cs
+/home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Areas/Identity/Pages/Account/Manage/_ViewImports.g.cshtml.cs
+/home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Areas/Identity/Pages/Account/Manage/Index.g.cshtml.cs
+/home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Views/Home/New.g.cshtml.cs

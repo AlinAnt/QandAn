@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using static QandAn.Areas.Identity.Pages.Account.RegisterModel;
 
 namespace QandAn.Areas.Identity.Pages.Account
 {

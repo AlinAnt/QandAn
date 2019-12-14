@@ -32,13 +32,12 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ID" >Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.ID" >Edit</a> 
     <a asp-action="Index">Back to List</a>
 </div>
 <div class="CreateAnswer">
     <form asp-action="CreateAnswer">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                
                 <div class="form-group">
                     <label class="control-label"></label>
                     <input type="hidden" value="@Model.ID" name="questionId" />
