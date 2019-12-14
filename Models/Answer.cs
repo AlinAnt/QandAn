@@ -7,7 +7,7 @@ namespace QandAn.Models
     public class Answer
     {
         [Required]
-        public virtual int ID {get; set;}
+        public  int ID {get; set;}
 
         public Question Question {get; set;}
         public int QuestionID {get; set;}
@@ -19,10 +19,10 @@ namespace QandAn.Models
 
         //Содержание ответа
         [Required]
-        public virtual string AnswerContent {get; set;}
+        public string AnswerContent {get; set;}
      
         //Время ответа на вопрос
-        public virtual DateTime AnswerTime {get; set;}
+        public  DateTime AnswerTime {get; set;}
         //Свойства навигации, связанные проблемы
     }
 }

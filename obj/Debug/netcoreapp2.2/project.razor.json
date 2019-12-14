@@ -3059,6 +3059,11 @@
       "FilePath": "/home/alina/QandAn/Views/QuestionsAndAnswer/Edit.cshtml",
       "TargetPath": "Views/QuestionsAndAnswer/Edit.cshtml",
       "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/alina/QandAn/Areas/Identity/Pages/Account/ConfirmEmail.cshtml",
+      "TargetPath": "Areas/Identity/Pages/Account/ConfirmEmail.cshtml",
+      "FileKind": "mvc"
     }
   ],
   "SerializationFormat": "0.2"

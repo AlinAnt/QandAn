@@ -14,6 +14,8 @@ using QandAn.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using static QandAn.Areas.Identity.Pages.Account.RegisterModel;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using QandAn.Services;
 
 namespace QandAn
 {
@@ -39,10 +41,12 @@ namespace QandAn
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<AlinUser>()
+            services.AddDefaultIdentity<AlinUser>( )
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-
+             
+            
+            services.AddSingleton<IEmailSender, EmailSender>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
