@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - QandA</title>
-
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     </environment>
@@ -21,7 +21,17 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="QuestionsAndAnswer" asp-action="Index"><h4>QandA</h4></a>
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">                     
+                    <a class="nav-brand nav-link active" asp-area="" asp-controller="QuestionsAndAnswer" asp-action="Index"><h2>QandA</h4></a>
+                    </li>
+                    <li class="nav-item">
+                    @if(User.IsInRole("Admin"))
+                    {
+                        <a class="nav-link active" asp-area="" asp-controller="Admin" asp-action="UserList">Admin <br>  Settings</a>
+                    }
+                </li>
+                </ul>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -29,7 +39,7 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                  
                     <partial name="_LoginPartial" />
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="New">Админка</a>
+                    
                 </div>
             </div>
         </nav>

@@ -10,6 +10,8 @@ using Microsoft.EntityFrameworkCore;
 using QandAn.Data;
 using QandAn.Models;
 using static QandAn.Areas.Identity.Pages.Account.RegisterModel;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace QandAn.Controllers
 {
@@ -28,21 +30,30 @@ namespace QandAn.Controllers
         }
 
         // GET: QuestionsAndAnswer
-        public async Task<IActionResult> Index()
+        
+        public async Task<IActionResult> Index(string searchString)
         {
             string[] roleNames = { "User", "Admin"};
             IdentityResult roleResult;
 
             foreach (var roleName in roleNames)
-            {
+            {   
+                //create the roles and seed them to the database:
                 var roleExist = await _roleManager.RoleExistsAsync(roleName);
                 if (!roleExist)
-                {
-                    //create the roles and seed them to the database: Question 1
+                {  
                     roleResult = await _roleManager.CreateAsync(new IdentityRole(roleName));
                 }
             }
-            return View(await _context.Questions.Include(q => q.User).ToListAsync());
+            ViewData["Filter"] = searchString;
+            var question = from s in _context.Questions
+                            select s;
+            if(!String.IsNullOrEmpty(searchString))
+            {
+                question = question.Where(s => s.QuestionTitle.Contains(searchString));
+            }
+            
+            return View(await question.Include(q => q.User).ToListAsync());
         }
         
         
@@ -62,11 +73,10 @@ namespace QandAn.Controllers
             {
                 return NotFound();
             }
-
             return View(question);
         }
+
         [Authorize(Roles = "Admin,User")]
-        // GET: QuestionsAndAnswer/Create
         public IActionResult Create()
         {
             return View();
@@ -74,6 +84,8 @@ namespace QandAn.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,User")]
+        [AllowAnonymous]
         public async Task<IActionResult> Create([Bind("ID,QuestionTitle, QuestionContent,QuestionCreateTime")] Question question)
         {
             ViewBag.Answers = new Answer();
@@ -208,13 +220,14 @@ namespace QandAn.Controllers
         {
            
                 var user = await _userManager.GetUserAsync(User);
+                DateTime time = DateTime.Now;
                 Question question = await _context.Questions
                                         .Include(u => u.Answers)
                                         .ThenInclude(u => u.User)
                                         .Where(d => d.ID == questionId)
                                         .FirstOrDefaultAsync();
                                   
-                var answer = new Answer { AnswerContent = AnswerContent , User = user, Question = question };
+                var answer = new Answer { AnswerContent = AnswerContent , User = user, Question = question, AnswerTime = time };
                 _context.Answers.Add(answer);
                 _context.SaveChanges();
 
@@ -224,6 +237,42 @@ namespace QandAn.Controllers
             return RedirectToAction("Details", "QuestionsAndAnswer", new {id = questionId});
         }
 
+        //[HttpPost, ActionName("DeleteAnswer")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> DeleteAnswer(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var answer = await _context.Answers
+                .FindAsync(id);
+            if (answer == null)
+            {
+                return NotFound();
+            }
+
+           return View(answer);
+        }
+
+        [HttpPost, ActionName("DeleteAnswer")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteAnswerConfirmed(int id)
+        {
+            var answer = await _context.Answers.FindAsync(id);
+            var user = await _userManager.GetUserAsync(User);
+            var is_admin =  await _userManager.IsInRoleAsync(user, "Admin");
+
+            if ((answer.UserId == user.Id) || is_admin)
+            {
+                _context.Answers.Remove(answer);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(answer);
+        }
+       
         protected override void Dispose(bool disposing)
         {
             if(disposing)

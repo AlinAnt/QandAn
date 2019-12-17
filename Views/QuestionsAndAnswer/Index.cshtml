@@ -4,29 +4,38 @@
     ViewData["Title"] = "Question List";
 }
 
-<h1>Question list</h1>
+
 <br>
-<p>
-     <!-- <button type="submit" class="btn btn-primary" value="Create" title="Create new question"><a asp-action="Create">Create</a></button> -->
-    <a asp-action="Create">Create new question</a>
-</p>
-<!-- <form asp-controller="QuestionsAndAnswer" asp-action ="Index">
-    <p>
-        Title: <input type="text", name="searchString">
-        <input type="submit" value="Filter"/>
-    </p> 
-</form> -->
-<table class="table">
+<div style="text-align:center">
+    <h1>Question list</h1>
+    <br>
+    <a asp-action="Create" style="color:#4aa69a"><h3>Create new question</h3></a>
+</div>
+<br>
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by Title: <input type="text" name="SearchString" value="@ViewData["Filter"]" />
+            <input type="submit" value="Search" class="btn btn-default" /> 
+            <a asp-action="Index">Back to Full List</a>
+        </p>
+    </div>
+</form>
+
+<table class="table table-striped">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.User)
+                
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.QuestionTitle)
             </th>
             <th>
+                
                 @Html.DisplayNameFor(model => model.QuestionCreateTime)
+                
             </th>
             <th></th>
         </tr>

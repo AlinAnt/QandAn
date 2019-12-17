@@ -46,4 +46,5 @@
 /home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Areas/Identity/Pages/Account/Manage/_ManageNav.g.cshtml.cs
 /home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Areas/Identity/Pages/Account/Manage/_ViewImports.g.cshtml.cs
 /home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Areas/Identity/Pages/Account/Manage/Index.g.cshtml.cs
-/home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Views/Home/New.g.cshtml.cs
+/home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Views/Admin/UserList.g.cshtml.cs
+/home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Views/QuestionsAndAnswer/DeleteAnswer.g.cshtml.cs

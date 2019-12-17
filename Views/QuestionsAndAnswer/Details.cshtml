@@ -1,4 +1,6 @@
+@using Microsoft.AspNetCore.Identity
 @model QandAn.Models.Question
+@inject SignInManager<QandAn.Areas.Identity.Pages.Account.RegisterModel.AlinUser> SignInManager
 
 
 @{
@@ -32,7 +34,11 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ID" >Edit</a> 
+    @if(SignInManager.IsSignedIn(User))
+    {
+       <a asp-action="Edit" asp-route-id="@Model.ID" >Edit</a> 
+    }
+    <br>
     <a asp-action="Index">Back to List</a>
 </div>
 <div class="CreateAnswer">
@@ -41,23 +47,28 @@
                 <div class="form-group">
                     <label class="control-label"></label>
                     <input type="hidden" value="@Model.ID" name="questionId" />
-                    <input name="AnswerContent" class="form-control"/>
-                    <span  class="text-danger"></span>
+                    <input name="AnswerContent" class="form-control" placeholder="Только для зарегистрированных пользователей"/>
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Create Answer" class="btn btn-primary" />
+                    <input type="submit" value="Create Answer" class="btn btn-outline-warning" />
                 </div>
     </form>
 </div>
-<div>
-    <table>
+<nav aria-label="breadcrumb">
+<div id= "list-example" class="list">
     @foreach (var ans in Model.Answers)
-    {
-        <tr>
-            <th>@ans.AnswerContent</th>
-            
-        </tr>
-                
+    {    
+        <ol class="breadcrumb">
+            @ans.User<br>
+            @ans.AnswerTime 
+            &nbsp
+            <li class="breadcrumb-item active" aria-current="page"><h5>@ans.AnswerContent</h5></li>
+       
+        @if(User.IsInRole("Admin"))
+        {
+            <a class="btn btn-warning btn-sm" style="display: block; margin-left:auto; " asp-action="DeleteAnswer" asp-route-id="@ans.ID" ><b>Delete</b></a>
+        }
+        </ol>
     }
-    </table>
 </div>
+</nav>

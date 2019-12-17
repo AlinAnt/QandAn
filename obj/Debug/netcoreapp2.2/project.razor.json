@@ -3041,11 +3041,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/home/alina/QandAn/Views/Home/New.cshtml",
-      "TargetPath": "Views/Home/New.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "/home/alina/QandAn/Views/Shared/_CookieConsentPartial.cshtml",
       "TargetPath": "Views/Shared/_CookieConsentPartial.cshtml",
       "FileKind": "mvc"
@@ -3078,6 +3073,16 @@
     {
       "FilePath": "/home/alina/QandAn/Areas/Identity/Pages/Account/Logout.cshtml",
       "TargetPath": "Areas/Identity/Pages/Account/Logout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/alina/QandAn/Views/Admin/UserList.cshtml",
+      "TargetPath": "Views/Admin/UserList.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/alina/QandAn/Views/QuestionsAndAnswer/DeleteAnswer.cshtml",
+      "TargetPath": "Views/QuestionsAndAnswer/DeleteAnswer.cshtml",
       "FileKind": "mvc"
     },
     {

@@ -24,16 +24,7 @@ namespace QandAn.Controllers
             var user = await _userManager.GetUserAsync(User);
             return View(user);
         }
-        [Authorize(Roles = "Admin")]
-        public IActionResult New()
-        {
-            return View("Вход только для админа");
-        }
-        // public IActionResult KnowRole()
-        // {
-        //     string role = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value;
-        //     return Content($"ваша роль: {role}");
-        // }
+       
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

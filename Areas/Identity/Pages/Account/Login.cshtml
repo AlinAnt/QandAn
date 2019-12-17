@@ -1,5 +1,6 @@
 ﻿@page
 @model LoginModel
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 
 @{
     ViewData["Title"] = "Log in";
@@ -37,7 +38,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn blue-gradient">Log in</button>
+                    <button type="submit" class="btn btn-warning">Log in</button>
                 </div>
                 <div class="form-group">
                     <p>
@@ -67,6 +68,7 @@
                                 @foreach (var provider in Model.ExternalLogins)
                                 {
                                     <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
                                 }
                             </p>
                         </div>

@@ -2821,7 +2821,7 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-warning {
-  color: #ffc107;
+  color: #000000;
   border-color: #ffc107;
 }
 
@@ -2832,7 +2832,7 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-warning:focus, .btn-outline-warning.focus {
-  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);
+  box-shadow: 0 0 0 0.2rem rgb(252,194,55);
 }
 
 .btn-outline-warning.disabled, .btn-outline-warning:disabled {
@@ -4808,7 +4808,7 @@ input[type="button"].btn-block {
   padding: 0.75rem 1rem;
   margin-bottom: 1rem;
   list-style: none;
-  background-color: #e9ecef;
+  background-color: #4aa69a;
   border-radius: 0.25rem;
 }
 
@@ -4819,7 +4819,7 @@ input[type="button"].btn-block {
 .breadcrumb-item + .breadcrumb-item::before {
   display: inline-block;
   padding-right: 0.5rem;
-  color: #6c757d;
+  color: #000508;
   content: "/";
 }
 
@@ -4832,7 +4832,7 @@ input[type="button"].btn-block {
 }
 
 .breadcrumb-item.active {
-  color: #6c757d;
+  color: #000000;
 }
 
 .pagination {
