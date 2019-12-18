@@ -14,14 +14,17 @@ namespace QandAn.Models
 
 
         public string UserId { get; set; }
+        [Display(Name = "Создатель ответа")]
         public AlinUser User { get; set; }
         
 
         //Содержание ответа
         [Required]
+        [Display(Name = "Содержимое ответа")]
         public string AnswerContent {get; set;}
      
         //Время ответа на вопрос
+        [Display(Name = "Время создания ответа")]
         public  DateTime AnswerTime {get; set;}
         //Свойства навигации, связанные проблемы
     }

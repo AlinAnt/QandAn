@@ -13,13 +13,13 @@ namespace QandAn.Areas.Identity.Pages.Account
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
-#line 2 "/home/alina/QandAn/Areas/Identity/Pages/_ViewImports.cshtml"
-using QandAn.Areas.Identity;
+#line 1 "/home/alina/QandAn/Areas/Identity/Pages/_ViewImports.cshtml"
+using Microsoft.AspNetCore.Identity;
 
 #line default
 #line hidden
-#line 3 "/home/alina/QandAn/Areas/Identity/Pages/_ViewImports.cshtml"
-using Microsoft.AspNetCore.Identity;
+#line 2 "/home/alina/QandAn/Areas/Identity/Pages/_ViewImports.cshtml"
+using QandAn.Areas.Identity;
 
 #line default
 #line hidden
@@ -29,7 +29,7 @@ using QandAn.Areas.Identity.Pages.Account;
 #line default
 #line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"9d2784c800328eb3dabec615dd7e32b700080306", @"/Areas/Identity/Pages/Account/Register.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"90681cf46be808fa6b79e13957402ddadf8cc5db", @"/Areas/Identity/Pages/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"9b155da64877a11d03156ad33aea1b6c44f42836", @"/Areas/Identity/Pages/_ViewImports.cshtml")]
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"80806c9402afaa00007878fef10b0d507fd8e07e", @"/Areas/Identity/Pages/Account/_ViewImports.cshtml")]
     public class Areas_Identity_Pages_Account_Register : global::Microsoft.AspNetCore.Mvc.RazorPages.Page
     {

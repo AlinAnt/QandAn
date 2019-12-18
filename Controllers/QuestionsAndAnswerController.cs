@@ -65,10 +65,10 @@ namespace QandAn.Controllers
                 return NotFound();
             }
             Question question = await _context.Questions
-                    .Include(u => u.Answers)
-                    .ThenInclude(u => u.User)
-                    .Where(d => d.ID == id)
-                    .FirstOrDefaultAsync();
+                                    .Include(u => u.Answers)
+                                    .ThenInclude(u => u.User)
+                                    .Where(d => d.ID == id)
+                                    .FirstOrDefaultAsync();
             if (question == null)
             {
                 return NotFound();
@@ -168,7 +168,11 @@ namespace QandAn.Controllers
             }
 
             var question = await _context.Questions
-                .FindAsync(id);
+                            .Include(u => u.Answers)
+                            .ThenInclude(u => u.User)
+                            .Where(d => d.ID == id)
+                            .FirstOrDefaultAsync();
+              
             if (question == null)
             {
                 return NotFound();
@@ -216,25 +220,24 @@ namespace QandAn.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin,User")]
-        public async Task<IActionResult> CreateAnswer(string AnswerContent, int questionId)
+        public async void CreateAnswer(string AnswerContent, int questionId)
         {
            
-                var user = await _userManager.GetUserAsync(User);
-                DateTime time = DateTime.Now;
-                Question question = await _context.Questions
-                                        .Include(u => u.Answers)
-                                        .ThenInclude(u => u.User)
-                                        .Where(d => d.ID == questionId)
-                                        .FirstOrDefaultAsync();
-                                  
-                var answer = new Answer { AnswerContent = AnswerContent , User = user, Question = question, AnswerTime = time };
-                _context.Answers.Add(answer);
-                _context.SaveChanges();
+            var user = await _userManager.GetUserAsync(User);   
+            DateTime time = DateTime.Now;
+            Question question = await _context.Questions
+                                    .Include(u => u.Answers)
+                                    .ThenInclude(u => u.User)
+                                    .Where(d => d.ID == questionId)
+                                    .FirstOrDefaultAsync();
+                                
+            var answer = new Answer { AnswerContent = AnswerContent , User = user, Question = question, AnswerTime = time };
+            _context.Answers.Add(answer);
+            _context.SaveChanges();
 
-                question.Answers.Add(answer);
-                _context.SaveChanges();
-
-            return RedirectToAction("Details", "QuestionsAndAnswer", new {id = questionId});
+            question.Answers.Add(answer);
+            _context.SaveChanges();
+          
         }
 
         //[HttpPost, ActionName("DeleteAnswer")]
@@ -247,7 +250,10 @@ namespace QandAn.Controllers
             }
 
             var answer = await _context.Answers
-                .FindAsync(id);
+                            .Include(u => u.Question)
+                            .Include(u => u.User)
+                            .Where(d => d.ID == id)
+                            .FirstOrDefaultAsync();
             if (answer == null)
             {
                 return NotFound();
@@ -261,6 +267,7 @@ namespace QandAn.Controllers
         public async Task<IActionResult> DeleteAnswerConfirmed(int id)
         {
             var answer = await _context.Answers.FindAsync(id);
+                                    
             var user = await _userManager.GetUserAsync(User);
             var is_admin =  await _userManager.IsInRoleAsync(user, "Admin");
 

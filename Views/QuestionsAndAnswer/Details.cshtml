@@ -13,19 +13,19 @@
     <h4> @Html.DisplayFor(model => model.QuestionTitle)</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class = "col-sm-6">
             @Html.DisplayNameFor(model => model.User)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.User.Name)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class = "col-sm-6">
             @Html.DisplayNameFor(model => model.QuestionContent)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.QuestionContent)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class = "col-sm-6">
             @Html.DisplayNameFor(model => model.QuestionCreateTime)
         </dt>
         <dd class = "col-sm-10">
@@ -41,34 +41,87 @@
     <br>
     <a asp-action="Index">Back to List</a>
 </div>
+
 <div class="CreateAnswer">
-    <form asp-action="CreateAnswer">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label class="control-label"></label>
-                    <input type="hidden" value="@Model.ID" name="questionId" />
-                    <input name="AnswerContent" class="form-control" placeholder="Только для зарегистрированных пользователей"/>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Create Answer" class="btn btn-outline-warning" />
-                </div>
-    </form>
+        <div class="input_answer">
+            <label class="control-label"></label>
+            <input type="hidden" value="@Model.User.Name" id="username">
+            <input type="hidden" value="@Model.ID" id="questionId" />
+            <input class="form-control" id = "answer" name="AnswerContent" placeholder="Только для зарегистрированных пользователей"/>
+        <div class="form-group">
+            <br>
+            <button class="btn btn-outline-warning" name="answerButton"  id="answerButton">Create answer</button>
+        </div>
+        
 </div>
+
 <nav aria-label="breadcrumb">
-<div id= "list-example" class="list">
-    @foreach (var ans in Model.Answers)
-    {    
-        <ol class="breadcrumb">
-            @ans.User<br>
-            @ans.AnswerTime 
-            &nbsp
-            <li class="breadcrumb-item active" aria-current="page"><h5>@ans.AnswerContent</h5></li>
-       
-        @if(User.IsInRole("Admin"))
-        {
-            <a class="btn btn-warning btn-sm" style="display: block; margin-left:auto; " asp-action="DeleteAnswer" asp-route-id="@ans.ID" ><b>Delete</b></a>
+    <div id= "list-example" class="list">
+        <ul id="answerList">
+        @foreach (var ans in Model.Answers)
+        {    
+            <ol class="breadcrumb">
+                @ans.User.Name<br>
+                @ans.AnswerTime 
+               
+                <li class="breadcrumb-item active" aria-current="page" ><b>@ans.AnswerContent</b></li>
+        
+            @if(User.IsInRole("Admin"))
+            {
+                <a class="btn btn-warning btn-sm" style="display: block; margin-left:auto; " asp-action="DeleteAnswer" asp-route-id="@ans.ID" ><b>Delete</b></a>
+            }
+            </ol>
         }
-        </ol>
-    }
-</div>
+        </ul>
+    </div>
 </nav>
+
+
+<script src="~/lib/signalr/dist/browser/signalr.js"></script>
+<script>
+     const hubConnection = new signalR.HubConnectionBuilder()
+            .withUrl("/answerHub")
+            .configureLogging(signalR.LogLevel.Information)
+            .build();
+        
+
+    document.getElementById("answerButton").addEventListener("click", function(e){
+        
+        let answer = document.getElementById("answer").value;
+        document.getElementById("answer").value = " ";
+        let question = document.getElementById("questionId").value;
+        let username = document.getElementById("username").value;
+     
+        hubConnection.invoke("Send", question, answer, username);
+        
+        $.ajax({
+            url: '@Url.Action("CreateAnswer")',
+            type:"POST",
+            data: { AnswerContent: answer, questionId: parseInt(question, 10)},
+            dataType: "text"
+            
+        }); 
+    });
+
+    hubConnection.on("Receive", function(answer, username, datetime){
+       
+        var ol = document.createElement("ol");
+        ol.className = "breadcrumb"
+        ol.innerHTML = `
+               <b> ${username}</b> <br>
+                ${datetime}
+                &nbsp
+                <li><h5>${answer}</h5></li>`
+        
+        document.getElementById("answerList").appendChild(ol);
+       
+    });
+    hubConnection.start().then(() => {
+        hubConnection.invoke('JoinGroup', document.getElementById("questionId").value).catch(err => console.error(err.toString()));
+        
+    });
+    
+</script>
+
+
+
