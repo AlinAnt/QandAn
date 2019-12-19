@@ -1,7 +1,7 @@
 @using Microsoft.AspNetCore.Identity
 @model QandAn.Models.Question
 @inject SignInManager<QandAn.Areas.Identity.Pages.Account.RegisterModel.AlinUser> SignInManager
-
+@inject QandAn.Data.ApplicationDbContext dbContext
 
 @{
      ViewData["Title"] = "Details";
@@ -37,23 +37,32 @@
     @if(SignInManager.IsSignedIn(User))
     {
        <a asp-action="Edit" asp-route-id="@Model.ID" >Edit</a> 
+       <br>
     }
-    <br>
     <a asp-action="Index">Back to List</a>
 </div>
-
-<div class="CreateAnswer">
+@if(SignInManager.IsSignedIn(User))
+{
+    <div class="CreateAnswer">
         <div class="input_answer">
             <label class="control-label"></label>
-            <input type="hidden" value="@Model.User.Name" id="username">
+            <input type="hidden" id="username" value="@dbContext.Users.FirstOrDefault(u => u.Email == User.Identity.Name).Name" >
             <input type="hidden" value="@Model.ID" id="questionId" />
             <input class="form-control" id = "answer" name="AnswerContent" placeholder="Только для зарегистрированных пользователей"/>
-        <div class="form-group">
-            <br>
-            <button class="btn btn-outline-warning" name="answerButton"  id="answerButton">Create answer</button>
+            <div class="form-group">
+                <br>
+                <button class="btn btn-warning" name="answerButton"  id="answerButton">Create answer</button>
+            </div>
         </div>
-        
-</div>
+    </div>
+}
+else {
+    <div class="contener" style="text-align:center">
+    <h3>Answers</h3>
+    <br>
+    </div>
+}
+
 
 <nav aria-label="breadcrumb">
     <div id= "list-example" class="list">
@@ -79,7 +88,7 @@
 
 <script src="~/lib/signalr/dist/browser/signalr.js"></script>
 <script>
-     const hubConnection = new signalR.HubConnectionBuilder()
+    const hubConnection = new signalR.HubConnectionBuilder()
             .withUrl("/answerHub")
             .configureLogging(signalR.LogLevel.Information)
             .build();
@@ -108,10 +117,10 @@
         var ol = document.createElement("ol");
         ol.className = "breadcrumb"
         ol.innerHTML = `
-               <b> ${username}</b> <br>
+                ${username}<br>
                 ${datetime}
                 &nbsp
-                <li><h5>${answer}</h5></li>`
+                <li style="color:black;"><b>${answer}</b></li>`
         
         document.getElementById("answerList").appendChild(ol);
        
