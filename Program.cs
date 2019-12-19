@@ -20,14 +20,12 @@ namespace QandAn
                    .ConfigureLogging((hostingContext, builder) =>
                     {
                         builder.AddFile(options => {
-                            options.FileName = "logFile-";
-                            options.LogDirectory = "Logs";
-                            options.FileSizeLimit = 20 * 1024 * 1024; // 20 MB
-                            options.Extension = "txt"; 
                             options.Periodicity = PeriodicityOptions.Hourly;
                         });
                         builder.AddFilter("Microsoft", LogLevel.Error);
-                    }) 
+                    }).ConfigureAppConfiguration((hostWeb, config) => {
+                        config.AddJsonFile("mail.json");
+                    })
                     .UseStartup<Startup>();  
     }
 }

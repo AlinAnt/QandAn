@@ -23,14 +23,16 @@
             <div class="container">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">                     
-                    <a class="nav-brand nav-link active" asp-area="" asp-controller="QuestionsAndAnswer" asp-action="Index"><h2>QandA</h4></a>
+                    <a class="nav-brand nav-link active" asp-area="" asp-controller="QuestionsAndAnswer" asp-action="Index"><h2>QandA</h2></a>
                     </li>
                     <li class="nav-item">
                     @if(User.IsInRole("Admin"))
                     {
                         <a class="nav-link active" asp-area="" asp-controller="Admin" asp-action="UserList">Admin <br>  Settings</a>
                     }
-                </li>
+                    </li>
+                    <li class="nav-item">                     
+                    </li>
                 </ul>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
