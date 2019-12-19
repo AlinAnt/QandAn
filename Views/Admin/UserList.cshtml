@@ -3,14 +3,14 @@
     <div class="form-group">
         <table class="table">
        
-        @* <tr>
+        <tr>
             <th>
                 <label>Пользользователи</label>
             </th>
             <th>
                 <label>Уровень доступа(Роль)</label>
             </th>
-        </tr> *@
+        </tr>
         <tr>
             <td>
             @foreach (var user in Model.Keys)
@@ -20,10 +20,6 @@
             @foreach (var roles in Model.Values)
             { @roles <br>} 
             </td> 
-            <td>
-            @foreach (var user in Model.Keys)
-            {<a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-userid="@user.Id">Права доступа</a><br>}
-            </td>
         </tr>
         
        

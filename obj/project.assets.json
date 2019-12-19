@@ -2925,6 +2925,18 @@
           "lib/netstandard2.0/MimeKit.dll": {}
         }
       },
+      "NetEscapades.Extensions.Logging.RollingFile/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Logging": "2.1.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/NetEscapades.Extensions.Logging.RollingFile.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/NetEscapades.Extensions.Logging.RollingFile.dll": {}
+        }
+      },
       "NETStandard.Library/2.0.3": {
         "type": "package",
         "dependencies": {
@@ -3222,18 +3234,6 @@
             "assetType": "native",
             "rid": "win-x86"
           }
-        }
-      },
-      "Sendgrid/9.12.0": {
-        "type": "package",
-        "dependencies": {
-          "Newtonsoft.Json": "9.0.1"
-        },
-        "compile": {
-          "lib/netstandard2.0/SendGrid.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/SendGrid.dll": {}
         }
       },
       "SQLitePCLRaw.bundle_green/1.1.12": {
@@ -8402,6 +8402,19 @@
         "mimekit.nuspec"
       ]
     },
+    "NetEscapades.Extensions.Logging.RollingFile/2.2.0": {
+      "sha512": "khaUvjRTcLH9MSHdnKZ+cBcZR8CLvyTlP1TzSCfG/pyIOQGLizv1qV8wkOCsek8+x5+MxH2EmCIGR/f+VZnmzg==",
+      "type": "package",
+      "path": "netescapades.extensions.logging.rollingfile/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/NetEscapades.Extensions.Logging.RollingFile.dll",
+        "lib/netstandard2.0/NetEscapades.Extensions.Logging.RollingFile.xml",
+        "netescapades.extensions.logging.rollingfile.2.2.0.nupkg.sha512",
+        "netescapades.extensions.logging.rollingfile.nuspec"
+      ]
+    },
     "NETStandard.Library/2.0.3": {
       "sha512": "st47PosZSHrjECdjeIzZQbzivYBJFv6P2nv4cj2ypdI204DO+vZ7l5raGMiX4eXMJ53RfOIg+/s4DHVZ54Nu2A==",
       "type": "package",
@@ -8923,26 +8936,6 @@
         "runtimes/win-x86/native/sni.dll",
         "useSharedDesignerContext.txt",
         "version.txt"
-      ]
-    },
-    "Sendgrid/9.12.0": {
-      "sha512": "HrH336vKylh6Yy4bqKFNPf0Rk1C7CDd4WX7D2f7D/g0Dy584Wx2Qh7vdM+NgAkHTWQ7bKwl7K9DZ9BiFKbimdA==",
-      "type": "package",
-      "path": "sendgrid/9.12.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net452/SendGrid.dll",
-        "lib/net452/SendGrid.pdb",
-        "lib/net452/SendGrid.xml",
-        "lib/netstandard1.3/SendGrid.dll",
-        "lib/netstandard1.3/SendGrid.pdb",
-        "lib/netstandard1.3/SendGrid.xml",
-        "lib/netstandard2.0/SendGrid.dll",
-        "lib/netstandard2.0/SendGrid.pdb",
-        "lib/netstandard2.0/SendGrid.xml",
-        "sendgrid.9.12.0.nupkg.sha512",
-        "sendgrid.nuspec"
       ]
     },
     "SQLitePCLRaw.bundle_green/1.1.12": {
@@ -13801,7 +13794,7 @@
       "Microsoft.NETCore.App >= 2.2.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 2.2.0",
       "MimeKit >= 2.4.1",
-      "SendGrid >= 9.12.0"
+      "NetEscapades.Extensions.Logging.RollingFile >= 2.2.0"
     ]
   },
   "packageFolders": {
@@ -13876,9 +13869,9 @@
             "target": "Package",
             "version": "[2.4.1, )"
           },
-          "SendGrid": {
+          "NetEscapades.Extensions.Logging.RollingFile": {
             "target": "Package",
-            "version": "[9.12.0, )"
+            "version": "[2.2.0, )"
           }
         },
         "imports": [

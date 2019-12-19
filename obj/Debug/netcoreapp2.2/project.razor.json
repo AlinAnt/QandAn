@@ -3081,11 +3081,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/home/alina/QandAn/Views/Admin/Edit.cshtml",
-      "TargetPath": "Views/Admin/Edit.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "/home/alina/QandAn/Areas/Identity/Pages/Account/Logout.cshtml",
       "TargetPath": "Areas/Identity/Pages/Account/Logout.cshtml",
       "FileKind": "mvc"
@@ -3093,6 +3088,11 @@
     {
       "FilePath": "/home/alina/QandAn/Views/Admin/UserList.cshtml",
       "TargetPath": "Views/Admin/UserList.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/alina/QandAn/Areas/Identity/Pages/Account/ForgotPassword.cshtml",
+      "TargetPath": "Areas/Identity/Pages/Account/ForgotPassword.cshtml",
       "FileKind": "mvc"
     },
     {

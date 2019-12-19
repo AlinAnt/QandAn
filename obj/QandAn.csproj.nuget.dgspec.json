@@ -49,10 +49,6 @@
               "version": "[2.2.0, )",
               "autoReferenced": true
             },
-            "Microsoft.AspNetCore.Authentication.Google": {
-              "target": "Package",
-              "version": "(, )"
-            },
             "Microsoft.AspNetCore.Razor.Design": {
               "suppressParent": "All",
               "target": "Package",
@@ -76,9 +72,9 @@
               "target": "Package",
               "version": "[2.4.1, )"
             },
-            "SendGrid": {
+            "NetEscapades.Extensions.Logging.RollingFile": {
               "target": "Package",
-              "version": "[9.12.0, )"
+              "version": "[2.2.0, )"
             }
           },
           "imports": [

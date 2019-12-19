@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2",
-    "signature": "b2a244f501677a16406ddb1978fd5fe0ed355849"
+    "signature": "3f49bf0d9f407a4d1dc04914d6619baa645830aa"
   },
   "compilationOptions": {
     "defines": [
@@ -31,7 +31,7 @@
           "Microsoft.NETCore.App": "2.2.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.2.0",
           "MimeKit": "2.4.1",
-          "Sendgrid": "9.12.0"
+          "NetEscapades.Extensions.Logging.RollingFile": "2.2.0"
         },
         "runtime": {
           "QandAn.dll": {}
@@ -322,6 +322,20 @@
           "lib/netstandard2.0/MimeKit.dll": {}
         }
       },
+      "NetEscapades.Extensions.Logging.RollingFile/2.2.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Logging": "2.2.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/NetEscapades.Extensions.Logging.RollingFile.dll": {
+            "assemblyVersion": "2.2.0.0",
+            "fileVersion": "2.2.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/NetEscapades.Extensions.Logging.RollingFile.dll": {}
+        }
+      },
       "NuGet.Frameworks/4.7.0": {
         "dependencies": {
           "NETStandard.Library": "2.0.3"
@@ -469,20 +483,6 @@
             "rid": "ubuntu.16.10-x64",
             "assetType": "native"
           }
-        }
-      },
-      "Sendgrid/9.12.0": {
-        "dependencies": {
-          "Newtonsoft.Json": "11.0.2"
-        },
-        "runtime": {
-          "lib/netstandard2.0/SendGrid.dll": {
-            "assemblyVersion": "9.12.0.0",
-            "fileVersion": "9.12.0.0"
-          }
-        },
-        "compile": {
-          "lib/netstandard2.0/SendGrid.dll": {}
         }
       },
       "SQLitePCLRaw.bundle_green/1.1.12": {
@@ -4076,6 +4076,13 @@
       "path": "mimekit/2.4.1",
       "hashPath": "mimekit.2.4.1.nupkg.sha512"
     },
+    "NetEscapades.Extensions.Logging.RollingFile/2.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-khaUvjRTcLH9MSHdnKZ+cBcZR8CLvyTlP1TzSCfG/pyIOQGLizv1qV8wkOCsek8+x5+MxH2EmCIGR/f+VZnmzg==",
+      "path": "netescapades.extensions.logging.rollingfile/2.2.0",
+      "hashPath": "netescapades.extensions.logging.rollingfile.2.2.0.nupkg.sha512"
+    },
     "NuGet.Frameworks/4.7.0": {
       "type": "package",
       "serviceable": true,
@@ -4180,13 +4187,6 @@
       "sha512": "sha512-leXiwfiIkW7Gmn7cgnNcdtNAU70SjmKW3jxGj1iKHOvdn0zRWsgv/l2OJUO5zdGdiv2VRFnAsxxhDgMzofPdWg==",
       "path": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl/4.3.2",
       "hashPath": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512"
-    },
-    "Sendgrid/9.12.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-HrH336vKylh6Yy4bqKFNPf0Rk1C7CDd4WX7D2f7D/g0Dy584Wx2Qh7vdM+NgAkHTWQ7bKwl7K9DZ9BiFKbimdA==",
-      "path": "sendgrid/9.12.0",
-      "hashPath": "sendgrid.9.12.0.nupkg.sha512"
     },
     "SQLitePCLRaw.bundle_green/1.1.12": {
       "type": "package",
