@@ -3,33 +3,29 @@
     <div class="form-group">
         <table class="table">
        
-        <tr>
+        @* <tr>
             <th>
                 <label>Пользользователи</label>
             </th>
             <th>
                 <label>Уровень доступа(Роль)</label>
             </th>
-        </tr>
+        </tr> *@
         <tr>
-            <th>
-                @foreach (var user in Model.Keys)
-                { @user <br> }
-            </th>
-            <th>
+            <td>
+            @foreach (var user in Model.Keys)
+            { @user <br> }
+            </td>
+            <td>
             @foreach (var roles in Model.Values)
             { @roles <br>} 
-            </th> 
-          
+            </td> 
+            <td>
+            @foreach (var user in Model.Keys)
+            {<a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-userid="@user.Id">Права доступа</a><br>}
+            </td>
         </tr>
         
-<!--         
-        <th>
-         @foreach (var roles in Model.Values)
-        {
-            @roles
-        }
-        </th> -->
        
         </table>
     </div>

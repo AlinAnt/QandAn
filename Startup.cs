@@ -16,6 +16,7 @@ using Microsoft.Extensions.DependencyInjection;
 using static QandAn.Areas.Identity.Pages.Account.RegisterModel;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using QandAn.Services;
+using Microsoft.AspNetCore.Authentication.Facebook;
 
 namespace QandAn
 {
@@ -24,6 +25,7 @@ namespace QandAn
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
         }
 
         public IConfiguration Configuration { get; }
@@ -46,8 +48,13 @@ namespace QandAn
                 .AddRoles<IdentityRole>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            
-                        
+
+            services.AddAuthentication().AddFacebook(facebookOptions =>  
+            {  
+                facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];  
+                facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];  
+            });
+                       
             services.AddSingleton<IEmailSender, EmailSender>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSignalR();
@@ -63,9 +70,11 @@ namespace QandAn
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseStatusCodePagesWithReExecute("/Error","?code={0}");
+                app.UseExceptionHandler("/Error");
+                
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
+                //app.UseHsts();
             }
 
             app.UseHttpsRedirection();
@@ -77,6 +86,8 @@ namespace QandAn
             {
                 routes.MapHub<AnswerHub>("/answerHub");
             });
+
+            
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

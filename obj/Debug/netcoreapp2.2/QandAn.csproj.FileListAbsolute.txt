@@ -48,3 +48,6 @@
 /home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Areas/Identity/Pages/Account/Manage/Index.g.cshtml.cs
 /home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Views/Admin/UserList.g.cshtml.cs
 /home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Views/QuestionsAndAnswer/DeleteAnswer.g.cshtml.cs
+/home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Views/Admin/Edit.g.cshtml.cs
+/home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Views/Error/Index.g.cshtml.cs
+/home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Areas/Identity/Pages/Account/ExternalLogin.g.cshtml.cs

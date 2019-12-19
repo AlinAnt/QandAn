@@ -1,3 +1,4 @@
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -28,6 +29,7 @@ namespace QandAn.Controllers
 
         // GET: QuestionsAndAnswer
         Dictionary <AlinUser, string> usrole = new Dictionary<AlinUser, string>();
+        
         public async Task<IActionResult> UserList()
         {
             foreach (var user in _userManager.Users.ToList())
@@ -43,6 +45,19 @@ namespace QandAn.Controllers
                 }
             }
             return View(usrole);
+        }
+       
+        public async Task<IActionResult> Edit(string userId)
+        {
+            AlinUser user = await _userManager.FindByIdAsync(userId);
+            if(user!=null)
+            {
+                var userRoles = await _userManager.GetRolesAsync(user);
+                var allRolles = _roleManager.Roles.ToList();
+
+               return View();
+            }
+            return NotFound();
         }
 
        
