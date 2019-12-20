@@ -1,2 +1,0 @@
-2019-12-20 05:20:25.582 +03:00 [Information] QandAn.Areas.Identity.Pages.Account.LogoutModel: User logged out.
-2019-12-20 05:22:40.017 +03:00 [Information] QandAn.Areas.Identity.Pages.Account.RegisterModel: User created a new account with password.

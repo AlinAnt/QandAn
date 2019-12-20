@@ -3021,6 +3021,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/home/alina/QandAn/Views/QuestionsAndAnswer/Import.cshtml",
+      "TargetPath": "Views/QuestionsAndAnswer/Import.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/alina/QandAn/Views/QuestionsAndAnswer/Delete.cshtml",
       "TargetPath": "Views/QuestionsAndAnswer/Delete.cshtml",
       "FileKind": "mvc"

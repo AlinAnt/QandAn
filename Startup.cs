@@ -48,7 +48,7 @@ namespace QandAn
                 facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];  
             });
             
-            services.AddSingleton<StackService>();
+            services.AddTransient<StackService>();
             services.AddSingleton<IEmailSender, EmailSender>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSignalR();
@@ -89,5 +89,7 @@ namespace QandAn
                     template: "{controller=QuestionsAndAnswer}/{action=Index}/{id?}");
             });
         }
+
+
     }
 }

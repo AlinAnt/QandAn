@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Security.Claims;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using QandAn.Data;
 using QandAn.Models;
 using static QandAn.Areas.Identity.Pages.Account.RegisterModel;
 
@@ -15,9 +17,14 @@ namespace QandAn.Controllers
     public class HomeController : Controller
     {
         private readonly UserManager<AlinUser> _userManager;
-        public HomeController(UserManager<AlinUser> userManager)
+        private readonly ApplicationDbContext _dbContext;
+
+
+        public HomeController(ApplicationDbContext dbContext, UserManager<AlinUser> userManager)
         {
             _userManager = userManager;
+            _dbContext = dbContext;
+            
         }
         public async Task<IActionResult> Index()
         { 
@@ -31,5 +38,7 @@ namespace QandAn.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
     }
 }

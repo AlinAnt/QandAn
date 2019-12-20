@@ -1,63 +1,71 @@
-i want to move a directory as a copy/paste routine, by keeping its structure as it is. i am not looking only for the files within all subfolders in a directory then copy/paste them (as this solution), instead i want to clone the whole thing and keep its structure as it is (tree -> subfolders and files), exactly like a copy and paste routine.
-
-so i found this function that copies a folder full of files to a new path:
+i just migrated .net core 2.0 to .net core 2.1. everything went fine, but when i try to login now i get the folowing error:
 
 
-  folder -> file(s)
+  
+  $exception  {system.objectdisposedexception: cannot access a disposed object.
+  object name: 'iserviceprovider'.
+  
 
 
-the function behaves as known as the copy/paste routine. it takes sourcepath, destinationpath and boolean value to overwriteexisting. nice and small but too bad it wasn't marked as the actual answer of that question there (recommend a rate).
+this happens in this bit of code:
 
-but what if i want to move a whole directory? in other words, what if i have a folder that has folders of folders of folders of files and etc? and maybe it is unknown the file structure tree size like this:
-
-
-  folder -> folder(s) -> ... -> folder(s) -> file(s)
-
-
-i am using the below routine to copy/paste a folder that has folders. but here i know that i only have one level of folders so only one foreach loop is required:
-
-foreach (var folder in destinationfolder) // here i know that i have only one level of folders to reach the files
+public class appcontractresolver : defaultcontractresolver
 {
-    copydirectory(folderpath, destinationpath, false); // use that function to copy the files
-}
+
+    private readonly iserviceprovider _services;
+
+    public appcontractresolver(iserviceprovider services)
+    {
+        _services = services;
+    }
+
+    protected override ilist&lt;jsonproperty&gt; createproperties(type type, memberserialization memberserialization)
+    {
+        var httpcontextaccessor = _services.getservice&lt;ihttpcontextaccessor&gt;();
+        var user = httpcontextaccessor.httpcontext.user;
+
+        list&lt;jsonproperty&gt; properies = base.createproperties(type, memberserialization).tolist();
+
+        properies = filteroneclaimgranted(type, properies, user);
+
+        return properies;
+    }
 
 
-this above function serves this directory structure:
+it happens on this line:
+
+var httpcontextaccessor = _services.getservice&lt;ihttpcontextaccessor&gt;();
 
 
-  folder -> folder(s) -> file(s)
+this did work on .net core 2.0 
 
+i have tried adding the httpcontextaccessor to my startup, but that did not work.
 
-i tried this and it didn't do what i want. i only retrieve all files while it searches all the subfolders. which is not what i want. i want to keep the subfolders and the original structure as it is. here i get four files instead of the directory structed as it is, subfolders and their subfolders, subfolders, files. only four because it removes duplicates which i do not want this to happen because i need all of them.
+so, how do i fix this?
 
-here is my current structure(but my question is global to any directory):
+let me know if you need more code. i will happily provide more, but i don't know what you might or might not need, so therefor i did not add a lot of code.'
 
+edit 
 
-  folder -> folders -> folders + files
+i have added services.addhttpcontextaccessor(); to my startup, but that does not seem to work. still getting the error.
 
+edit 2:
 
-here is what the below code does in the new path:
+full stacktrace:
 
+- $exception    {system.objectdisposedexception: cannot access a disposed object.
+object name: 'iserviceprovider'.
+   at microsoft.extensions.dependencyinjection.servicelookup.throwhelper.throwobjectdisposedexception()
+   at microsoft.extensions.dependencyinjection.servicelookup.serviceproviderenginescope.getservice(type servicetype)
+   at microsoft.extensions.dependencyinjection.serviceproviderserviceextensions.getservice[t](iserviceprovider provider)
+   at webapi.extensions.appcontractresolver.createproperties(type type, memberserialization memberserialization) in c:\users\luukw\desktop\stage\blacky-api\blacky\extensions\resolver\appcontractresolver.cs:line 25
+   at newtonsoft.json.serialization.defaultcontractresolver.createobjectcontract(type objecttype)
+   at newtonsoft.json.serialization.defaultcontractresolver.createcontract(type objecttype)
+   at system.collections.concurrent.concurrentdictionary`2.getoradd(tkey key, func`2 valuefactory)
+   at newtonsoft.json.serialization.defaultcontractresolver.resolvecontract(type type)
+   at newtonsoft.json.serialization.jsonserializerinternalreader.getcontractsafe(type type)
+   at newtonsoft.json.serialization.jsonserializerinternalreader.deserialize(jsonreader reader, type objecttype, boolean checkadditionalcontent)
+   at newtonsoft.json.jsonserializer.deserializeinternal(jsonreader reader, type objecttype)
+   at newtonsoft.json.jsonserializer.deserialize(jsonreader reader, type objecttype)
+   at microsoft.aspnetcore.mvc.formatters.jsoninputformatter.readrequestbodyasync(inputformattercontext context, encoding encoding)}    system.objectdisposedexception
 
-  newfolder -> allfilesfoundinanysubfolder
-
-
-dialog.filename = dialog.filename.replace(".xml", ""); // get the destination path
-directoryinfo dirinfo = new directoryinfo(dialog.filename);
-
-if (dirinfo.exists == false)
-    directory.createdirectory(dialog.filename);
-
-list&lt;string&gt; everythinginthedirectory = directory
-                    .getfiles(filestructure.basesessionpath + "\\" + selectedsession.name, "*.*", searchoption.alldirectories).tolist(); // source
-
-foreach (string file in everythinginthedirectory)
-{
-    fileinfo mfile = new fileinfo(file);
-    // to remove name collusion
-    if (new fileinfo(dirinfo + "\\" + mfile.name).exists == false)
-        mfile.moveto(dirinfo + "\\" + mfile.name);
-}
-
-
-how to move the whole directory with unknown size and keep its structure as it is? not get only the files from a directory and move them!

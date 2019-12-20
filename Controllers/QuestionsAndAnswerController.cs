@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -20,6 +21,8 @@ namespace QandAn.Controllers
         private readonly UserManager<AlinUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly StackService _stackService;
+        private readonly Random rand = new Random();
+        private Timer timer;
 
         public QuestionsAndAnswerController(StackService stackService, ApplicationDbContext context, UserManager<AlinUser> userManager, RoleManager<IdentityRole> roleManager)
         {
@@ -29,10 +32,18 @@ namespace QandAn.Controllers
             _stackService = stackService;
         }
 
+        public void SimulateLife(object state)
+        {
+            var count = _context.Answers.Count();
+            _context.Answers.ToList()[rand.Next(0, count)].Rating += 1;
+            _context.SaveChanges();
+        }
+
         // GET: QuestionsAndAnswer
         
         public async Task<IActionResult> Index(string searchString)
         {
+
             string[] roleNames = { "User", "Admin"};
             IdentityResult roleResult;
 
@@ -244,22 +255,7 @@ namespace QandAn.Controllers
             return _context.Questions.Any(e => e.ID == id);
         }
 
-        // public async Task<IActionResult> MoreAnswer(int? id)
-        // {
-        //     if (id == null)
-        //     {
-        //         return NotFound();
-        //     }
-
-        //     var question = await _context.Questions
-        //         .FindAsync(id);
-        //     if (question == null)
-        //     {
-        //         return NotFound();
-        //     }
-        //     return PartialView("AnswerListPartial", question.Answers);
-        // }
-
+        
         [HttpPost]
         [Authorize(Roles = "Admin,User")]
         public async void CreateAnswer(string AnswerContent, int questionId)

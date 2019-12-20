@@ -1,1 +1,1 @@
-how to copy and paste a whole directory to a new path recursively?
+.net core 2.1 - cannot access a disposed object.object name: &#39;iserviceprovider&#39;
