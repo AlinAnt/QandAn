@@ -1,11 +1,7 @@
-
-
-body {
-    background-image: url(https://images.pexels.com/photos/32246/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
-    background-size: cover;
-    background-repeat: no-repeat;
-    min-height: 100vh;
-    min-width: 80vw;
-    font-family: "Roboto Mono", "Liberation Mono", Consolas, monospace;
-    color: #141414
+h2,h4,h5,h6 {font-family: "Lato", sans-serif; color:black;}
+body, html {
+  background-image: url('https://pixabay.com/get/54e1d1444e52ac14f6d1867dda6d49214b6ac3e456567741722a72d596/morning-2147400_1920.jpg');  
 }
+
+body,h1, h3 {font-family: "Raleway", sans-serif; color: black; background-color:#ffb400;}
+

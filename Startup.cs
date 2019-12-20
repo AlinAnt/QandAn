@@ -55,6 +55,8 @@ namespace QandAn
             services.AddTransient<StackService>();
             services.AddSingleton<IEmailSender, EmailSender>();
             services.AddTransient<RolesImputerService>();
+            services.AddHostedService<ContentService>();
+            services.AddScoped<IScopedProcessingService, ScopedProcessingService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSignalR();
