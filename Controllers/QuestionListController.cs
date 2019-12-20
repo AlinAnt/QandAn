@@ -15,11 +15,13 @@ namespace QandAn.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ApplicationDbContext _dbContext;
+        private DatabaseService _databaseService;
 
-        public QuestionListController(ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager)
+        public QuestionListController(ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager, DatabaseService databaseService)
         {
             _userManager = userManager;
             _dbContext = dbContext;
+            _databaseService = databaseService;
         }
 
         public async Task<IActionResult> Index(string searchString)
@@ -70,11 +72,7 @@ namespace QandAn.Controllers
                 return NotFound();
             }
 
-            var question = await _dbContext.Questions
-                                           .Include(u => u.Answers)
-                                           .ThenInclude(u => u.User)
-                                           .Where(d => d.ID == id)
-                                           .FirstOrDefaultAsync();
+            var question = await _databaseService.GetQuestionById(id);
                             
             return View(question);
         }

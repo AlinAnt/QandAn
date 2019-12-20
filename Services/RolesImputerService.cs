@@ -24,7 +24,7 @@ namespace QandAn.Services
             _context = context;
             _userManager = userManager;
             _roleManager = roleManager;
-            Console.WriteLine("fjdsa;dlfjfjjadsfalsfdjasfjdaFJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ");
+            
             
         }
         

@@ -1,1 +1,1 @@
-i&#39;m unable to display fontawesome icons in my vuejs app
+how to add an hour to a timespan. c#

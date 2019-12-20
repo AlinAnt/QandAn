@@ -15,11 +15,13 @@ namespace QandAn.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ApplicationDbContext _dbContext;
+        private DatabaseService _databaseService;
 
-        public QuestionController(ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager)
+        public QuestionController(ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager, DatabaseService databaseService)
         {
             _userManager = userManager;
             _dbContext = dbContext;
+            _databaseService = databaseService;
         }
 
         [HttpGet]
@@ -29,12 +31,8 @@ namespace QandAn.Controllers
             {
                 return NotFound();
             }
-            
-            Question question = await _dbContext.Questions
-                                                .Include(u => u.Answers)
-                                                .ThenInclude(u => u.User)
-                                                .Where(d => d.ID == id)
-                                                .FirstOrDefaultAsync();
+            var question = await _databaseService.GetQuestionById(id);
+
             return View(question);
         }
 
@@ -46,7 +44,7 @@ namespace QandAn.Controllers
                 return NotFound();
             }
 
-            var question = await _dbContext.Questions.FindAsync(id);
+            var question = await _databaseService.GetQuestionById(id);
             return View(question);
         }
         
@@ -59,7 +57,7 @@ namespace QandAn.Controllers
                 return NotFound();
             }
 
-            var tempQuestion = await _dbContext.Questions.FindAsync(question.ID);
+            var tempQuestion = await _databaseService.GetQuestionById(question.ID);
             var user = await _userManager.GetUserAsync(User);
 
             if (ModelState.IsValid & tempQuestion.UserId == user.Id)
@@ -80,7 +78,7 @@ namespace QandAn.Controllers
         public async void AddRating(int answerId, int value)
         {
             var user = await _userManager.GetUserAsync(User);
-            var answer = await _dbContext.Answers.Include(a => a.Voting).Where(a => a.ID == answerId).FirstOrDefaultAsync();
+            var answer = await _databaseService.GetAnswerById(answerId);
 
             if (!answer.Voting.ToList().Contains(user))
             {
@@ -100,12 +98,7 @@ namespace QandAn.Controllers
 
             var user = await _userManager.GetUserAsync(User);   
             DateTime time = DateTime.Now;
-            Question question = await _dbContext.Questions
-                                                .Include(u => u.Answers)
-                                                .ThenInclude(u => u.User)
-                                                .Where(d => d.ID == questionId)
-                                                .FirstOrDefaultAsync();
-                                
+            Question question = await _databaseService.GetQuestionById(questionId);
             var answer = new Answer { AnswerContent = AnswerContent , User = user, Question = question, AnswerTime = time };
             _dbContext.Answers.Add(answer);
             _dbContext.SaveChanges();
@@ -120,11 +113,7 @@ namespace QandAn.Controllers
             if (id == null || !_dbContext.Answers.Any(q => q.ID == id))
                 return NotFound();
 
-            var answer = await _dbContext.Answers
-                                         .Include(u => u.Question)
-                                         .Include(u => u.User)
-                                         .Where(d => d.ID == id)
-                                         .FirstOrDefaultAsync();
+            var answer = await _databaseService.GetAnswerById((int) id);
 
            return View(answer);
         }
@@ -133,11 +122,7 @@ namespace QandAn.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteAnswerConfirmed(int id)
         {
-            var answer = _dbContext.Answers.Include(a => a.Question)
-                                           .ThenInclude(q => q.Answers)
-                                           .Where(a => a.ID == id)
-                                           .FirstOrDefault();
-
+            var answer = await _databaseService.GetAnswerById(id);
 
             var user = await _userManager.GetUserAsync(User);
             var is_admin =  await _userManager.IsInRoleAsync(user, "Admin");

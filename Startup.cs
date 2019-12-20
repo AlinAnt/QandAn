@@ -53,6 +53,7 @@ namespace QandAn
 
             
             services.AddTransient<StackService>();
+            services.AddScoped<DatabaseService>();
             services.AddSingleton<IEmailSender, EmailSender>();
             services.AddTransient<RolesImputerService>();
             services.AddHostedService<ContentService>();

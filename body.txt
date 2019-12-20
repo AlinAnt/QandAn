@@ -1,23 +1,9 @@
-in my main.js i have:
+i have my timespan for a specific reason so it has to be in that format. i'm trying to add an hour on to the current time. here is what i got, which does not work:
 
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fausersecret } from '@fortawesome/free-solid-svg-icons'
-import { fafontawesome } from '@fortawesome/free-brands-svg-icons'
-import { fontawesomeicon } from '@fortawesome/vue-fontawesome'
-
-library.add(fausersecret)
-library.add(fafontawesome)
+timespan time1= timespan.fromhours(1); // my attempt to add 2 hours
+timespan ts = datetime.now.timeofday;
+ts.add(time1);
+messagebox.show(ts.tostring()); // for showing me its result
 
 
-vue.component('font-awesome-icon', fontawesomeicon)
-
-
-in my component i have 
-
- &lt;button class="btn btn-secondary" type="button"&gt;
-                 &lt;font-awesome-icon :icon="['fa', 'fa-search']" /&gt;
-                 &lt;font-awesome-icon :icon="['fas', 'user-secret']" /&gt;
-                &lt;/button&gt;
-
-
-and i only see the second icon...what am i doing incorrectly here?
+can you please advise?
