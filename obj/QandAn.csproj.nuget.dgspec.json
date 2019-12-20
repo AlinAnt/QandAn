@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "/home/alina/QandAn/QandAn.csproj": {}
+    "D:\\Alina\\QandAn\\QandAn.csproj": {}
   },
   "projects": {
-    "/home/alina/QandAn/QandAn.csproj": {
+    "D:\\Alina\\QandAn\\QandAn.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/alina/QandAn/QandAn.csproj",
+        "projectUniqueName": "D:\\Alina\\QandAn\\QandAn.csproj",
         "projectName": "QandAn",
-        "projectPath": "/home/alina/QandAn/QandAn.csproj",
-        "packagesPath": "/home/alina/.nuget/packages/",
-        "outputPath": "/home/alina/QandAn/obj/",
+        "projectPath": "D:\\Alina\\QandAn\\QandAn.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "D:\\Alina\\QandAn\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "/usr/share/dotnet/sdk/NuGetFallbackFolder"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "/home/alina/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.2"
