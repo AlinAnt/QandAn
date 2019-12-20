@@ -129,7 +129,7 @@ namespace QandAn.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("QandAn.Areas.Identity.Pages.Account.RegisterModel+AlinUser", b =>
+            modelBuilder.Entity("QandAn.Areas.Identity.Pages.Account.RegisterModel+ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -242,7 +242,7 @@ namespace QandAn.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("QandAn.Areas.Identity.Pages.Account.RegisterModel+AlinUser")
+                    b.HasOne("QandAn.Areas.Identity.Pages.Account.RegisterModel+ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -250,7 +250,7 @@ namespace QandAn.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("QandAn.Areas.Identity.Pages.Account.RegisterModel+AlinUser")
+                    b.HasOne("QandAn.Areas.Identity.Pages.Account.RegisterModel+ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -263,7 +263,7 @@ namespace QandAn.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("QandAn.Areas.Identity.Pages.Account.RegisterModel+AlinUser")
+                    b.HasOne("QandAn.Areas.Identity.Pages.Account.RegisterModel+ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -271,13 +271,13 @@ namespace QandAn.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("QandAn.Areas.Identity.Pages.Account.RegisterModel+AlinUser")
+                    b.HasOne("QandAn.Areas.Identity.Pages.Account.RegisterModel+ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("QandAn.Areas.Identity.Pages.Account.RegisterModel+AlinUser", b =>
+            modelBuilder.Entity("QandAn.Areas.Identity.Pages.Account.RegisterModel+ApplicationUser", b =>
                 {
                     b.HasOne("QandAn.Models.Answer")
                         .WithMany("Voting")
@@ -291,14 +291,14 @@ namespace QandAn.Migrations
                         .HasForeignKey("QuestionID")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("QandAn.Areas.Identity.Pages.Account.RegisterModel+AlinUser", "User")
+                    b.HasOne("QandAn.Areas.Identity.Pages.Account.RegisterModel+ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("QandAn.Models.Question", b =>
                 {
-                    b.HasOne("QandAn.Areas.Identity.Pages.Account.RegisterModel+AlinUser", "User")
+                    b.HasOne("QandAn.Areas.Identity.Pages.Account.RegisterModel+ApplicationUser", "User")
                         .WithMany("Questions")
                         .HasForeignKey("UserId");
                 });

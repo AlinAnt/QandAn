@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -16,11 +16,11 @@ namespace QandAn.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly UserManager<AlinUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly ApplicationDbContext _dbContext;
 
 
-        public HomeController(ApplicationDbContext dbContext, UserManager<AlinUser> userManager)
+        public HomeController(ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
             _dbContext = dbContext;

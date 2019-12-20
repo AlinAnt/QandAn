@@ -1,0 +1,23 @@
+in my main.js i have:
+
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fausersecret } from '@fortawesome/free-solid-svg-icons'
+import { fafontawesome } from '@fortawesome/free-brands-svg-icons'
+import { fontawesomeicon } from '@fortawesome/vue-fontawesome'
+
+library.add(fausersecret)
+library.add(fafontawesome)
+
+
+vue.component('font-awesome-icon', fontawesomeicon)
+
+
+in my component i have 
+
+ &lt;button class="btn btn-secondary" type="button"&gt;
+                 &lt;font-awesome-icon :icon="['fa', 'fa-search']" /&gt;
+                 &lt;font-awesome-icon :icon="['fas', 'user-secret']" /&gt;
+                &lt;/button&gt;
+
+
+and i only see the second icon...what am i doing incorrectly here?

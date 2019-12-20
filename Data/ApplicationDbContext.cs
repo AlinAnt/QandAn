@@ -8,7 +8,7 @@ using static QandAn.Areas.Identity.Pages.Account.RegisterModel;
 
 namespace QandAn.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<AlinUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

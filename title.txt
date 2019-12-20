@@ -1,1 +1,1 @@
-.net core 2.1 - cannot access a disposed object.object name: &#39;iserviceprovider&#39;
+i&#39;m unable to display fontawesome icons in my vuejs app

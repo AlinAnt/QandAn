@@ -1,6 +1,6 @@
 @using Microsoft.AspNetCore.Identity
 @model QandAn.Models.Question
-@inject SignInManager<QandAn.Areas.Identity.Pages.Account.RegisterModel.AlinUser> SignInManager
+@inject SignInManager<QandAn.Areas.Identity.Pages.Account.RegisterModel.ApplicationUser> SignInManager
 @inject QandAn.Data.ApplicationDbContext dbContext
 
 @{
@@ -35,7 +35,7 @@
 </div>
 <div>
     <br>
-    <a asp-action="Index">Back to List</a>
+    <a asp-controller="QuestionList" asp-action="Index">Back to List</a>
 </div>
 @if(SignInManager.IsSignedIn(User))
 {
@@ -67,18 +67,17 @@ else {
         {    
            
             <ol class="breadcrumb">
-                <div>
+                 <div >
                     <label id="@ans.ID"> @ans.Rating</label>
-                    @if(SignInManager.IsSignedIn(User))
+                      @if(SignInManager.IsSignedIn(User))
                     {
-                        <input type="button" onclick="change_rating(@ans.ID, 1)" id="negativeButton" value="+"/>
-                        <input type="button" id="positiveButton" onclick="change_rating(@ans.ID, -1)" value="-"/>
+                    <input type="button" onclick="change_rating(@ans.ID, 1)" id="negativeButton" value="+"/>
+                    <input type="button" id="positiveButton" onclick="change_rating(@ans.ID, -1)" value="-"/>
                     }
                 </div>
-                &nbsp;
+                &npsb
                 @ans.User.Name<br>
                 @ans.AnswerTime 
-
                 <li class="breadcrumb-item active" aria-current="page" ><b>@ans.AnswerContent</b></li>
         
             @if(User.IsInRole("Admin"))

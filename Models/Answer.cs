@@ -14,11 +14,11 @@ namespace QandAn.Models
         public int QuestionID {get; set;}
 
         public int Rating { get; set; }
-        public List<AlinUser> Voting { get; set; }
+        public List<ApplicationUser> Voting { get; set; }
 
         public string UserId { get; set; }
         [Display(Name = "Создатель ответа")]
-        public AlinUser User { get; set; }
+        public ApplicationUser User { get; set; }
         
         [Required]
         [Display(Name = "Содержимое ответа")]

@@ -4,15 +4,6 @@
     ViewData["Title"] = "Question List";
 }
 
-
-<br>
-<div style="text-align:center">
-    <h1>Question list</h1>
-    <br>
-    <a asp-action="Import" style="color:black"><h3>Import question</h3></a>
-    <a asp-action="Create" style="color:#3ea2b8"><h3>Create new question</h3></a>
-</div>
-<br>
 <form asp-action="Index" method="get">
     <div class="form-actions no-color">
         <p>
@@ -56,11 +47,11 @@
             </td>
 
             <td>
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a>
+                <a asp-action="Index" asp-controller="Question" asp-route-id="@item.ID">Details</a>
                 @if (item.User.Email == User.Identity.Name)
                 {
-                    <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> 
-                    <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                    <a asp-action="Edit" asp-controller="Question" asp-route-id="@item.ID">Edit</a> 
+                    <a asp-action="Delete" asp-controller="QuestionList" asp-route-id="@item.ID">Delete</a>
                 }
             </td>
         </tr>

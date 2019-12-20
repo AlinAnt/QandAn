@@ -16,10 +16,10 @@ namespace QandAn.Services
     public class RolesImputerService 
     {
         private readonly ApplicationDbContext _context;
-        private readonly UserManager<AlinUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
-        public RolesImputerService(ApplicationDbContext context, UserManager<AlinUser> userManager, RoleManager<IdentityRole> roleManager)
+        public RolesImputerService(ApplicationDbContext context, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _context = context;
             _userManager = userManager;

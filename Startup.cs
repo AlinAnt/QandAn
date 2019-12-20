@@ -35,7 +35,7 @@ namespace QandAn
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<AlinUser>( )
+            services.AddDefaultIdentity<ApplicationUser>( )
                 .AddRoles<IdentityRole>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -90,7 +90,7 @@ namespace QandAn
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=QuestionsAndAnswer}/{action=Index}/{id?}");
+                    template: "{controller=QuestionList}/{action=Index}/{id?}");
             });
         }
 

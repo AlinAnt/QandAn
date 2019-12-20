@@ -13,7 +13,7 @@ namespace QandAn.Models
         public string UserId { get; set; }
 
         [Display(Name = "Создатель вопроса")]
-        public AlinUser User { get; set; }
+        public ApplicationUser User { get; set; }
 
         [Display(Name = "Заголовок вопроса")]
         public string QuestionTitle {get; set;}

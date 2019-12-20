@@ -1,4 +1,4 @@
-@inject SignInManager<QandAn.Areas.Identity.Pages.Account.RegisterModel.AlinUser> SignInManager
+@inject SignInManager<QandAn.Areas.Identity.Pages.Account.RegisterModel.ApplicationUser> SignInManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }

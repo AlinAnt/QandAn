@@ -3006,6 +3006,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/home/alina/QandAn/Views/QuestionList/Index.cshtml",
+      "TargetPath": "Views/QuestionList/Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/alina/QandAn/Views/Error/Index.cshtml",
       "TargetPath": "Views/Error/Index.cshtml",
       "FileKind": "mvc"
@@ -3021,6 +3026,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/home/alina/QandAn/Views/QuestionImport/Index.cshtml",
+      "TargetPath": "Views/QuestionImport/Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/alina/QandAn/Views/QuestionsAndAnswer/Import.cshtml",
       "TargetPath": "Views/QuestionsAndAnswer/Import.cshtml",
       "FileKind": "mvc"
@@ -3033,6 +3043,11 @@
     {
       "FilePath": "/home/alina/QandAn/Views/Shared/_LoginPartial.cshtml",
       "TargetPath": "Views/Shared/_LoginPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/alina/QandAn/Views/QuestionList/Create.cshtml",
+      "TargetPath": "Views/QuestionList/Create.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -3053,6 +3068,16 @@
     {
       "FilePath": "/home/alina/QandAn/Views/Shared/Error.cshtml",
       "TargetPath": "Views/Shared/Error.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/alina/QandAn/Views/Question/Edit.cshtml",
+      "TargetPath": "Views/Question/Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/alina/QandAn/Views/Question/DeleteAnswer.cshtml",
+      "TargetPath": "Views/Question/DeleteAnswer.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -3086,6 +3111,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/home/alina/QandAn/Views/QuestionList/Delete.cshtml",
+      "TargetPath": "Views/QuestionList/Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/alina/QandAn/Areas/Identity/Pages/Account/Logout.cshtml",
       "TargetPath": "Areas/Identity/Pages/Account/Logout.cshtml",
       "FileKind": "mvc"
@@ -3093,6 +3123,11 @@
     {
       "FilePath": "/home/alina/QandAn/Views/Admin/UserList.cshtml",
       "TargetPath": "Views/Admin/UserList.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/alina/QandAn/Views/Question/Index.cshtml",
+      "TargetPath": "Views/Question/Index.cshtml",
       "FileKind": "mvc"
     },
     {

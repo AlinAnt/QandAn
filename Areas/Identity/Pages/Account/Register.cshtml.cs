@@ -16,14 +16,14 @@ namespace QandAn.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<AlinUser> _signInManager;
-        private readonly UserManager<AlinUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
         public RegisterModel(
-            UserManager<AlinUser> userManager,
-            SignInManager<AlinUser> signInManager,
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
@@ -65,7 +65,7 @@ namespace QandAn.Areas.Identity.Pages.Account
             ReturnUrl = returnUrl;
         }
 
-        public class AlinUser : IdentityUser 
+        public class ApplicationUser : IdentityUser 
         {
             [Required]
             [Display(Name = "Name")]
@@ -78,7 +78,7 @@ namespace QandAn.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var user = new AlinUser { UserName = Input.Email, Email = Input.Email, Name = Input.Name };
+                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, Name = Input.Name };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
