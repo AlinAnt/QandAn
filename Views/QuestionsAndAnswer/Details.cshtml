@@ -67,14 +67,18 @@ else {
         {    
            
             <ol class="breadcrumb">
-                 <div >
+                <div>
                     <label id="@ans.ID"> @ans.Rating</label>
-                    <input type="button" onclick="change_rating(@ans.ID, 1)" id="negativeButton" value="+"/>
-                    <input type="button" id="positiveButton" onclick="change_rating(@ans.ID, -1)" value="-"/>
+                    @if(SignInManager.IsSignedIn(User))
+                    {
+                        <input type="button" onclick="change_rating(@ans.ID, 1)" id="negativeButton" value="+"/>
+                        <input type="button" id="positiveButton" onclick="change_rating(@ans.ID, -1)" value="-"/>
+                    }
                 </div>
-                &npsb
+                &nbsp;
                 @ans.User.Name<br>
                 @ans.AnswerTime 
+
                 <li class="breadcrumb-item active" aria-current="page" ><b>@ans.AnswerContent</b></li>
         
             @if(User.IsInRole("Admin"))
