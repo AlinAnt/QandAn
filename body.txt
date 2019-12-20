@@ -1,39 +1,63 @@
-<p>I am trying to scrape below url:</p>
+i want to move a directory as a copy/paste routine, by keeping its structure as it is. i am not looking only for the files within all subfolders in a directory then copy/paste them (as this solution), instead i want to clone the whole thing and keep its structure as it is (tree -> subfolders and files), exactly like a copy and paste routine.
 
-<p><a href="https://threatmap.checkpoint.com/ThreatPortal/livemap.html" rel="nofollow noreferrer">https://threatmap.checkpoint.com/ThreatPortal/livemap.html</a></p>
+so i found this function that copies a folder full of files to a new path:
 
-<p>I am scraping ATTACKS TODAY i.e shown in no as 952,xxx.</p>
 
-<p>I wrote below code in C#</p>
+  folder -> file(s)
 
-<pre><code>  public partial class Form4 : Form
+
+the function behaves as known as the copy/paste routine. it takes sourcepath, destinationpath and boolean value to overwriteexisting. nice and small but too bad it wasn't marked as the actual answer of that question there (recommend a rate).
+
+but what if i want to move a whole directory? in other words, what if i have a folder that has folders of folders of folders of files and etc? and maybe it is unknown the file structure tree size like this:
+
+
+  folder -> folder(s) -> ... -> folder(s) -> file(s)
+
+
+i am using the below routine to copy/paste a folder that has folders. but here i know that i only have one level of folders so only one foreach loop is required:
+
+foreach (var folder in destinationfolder) // here i know that i have only one level of folders to reach the files
 {
-    public Form4()
-    {
-        InitializeComponent();
-        this.webBrowser1.ObjectForScripting = new MyScript();
-    }
-
-    private void Form4_Load(object sender, EventArgs e)
-    {
-        webBrowser1.Navigate("https://threatmap.checkpoint.com/ThreatPortal/livemap.html");
-    }
-
-    private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
-    {
-        webBrowser1.Navigate("javascript: window.external.CallServerSideCode();");
-    }
-
-    [ComVisible(true)]
-    public class MyScript
-    {
-        public void CallServerSideCode()
-        {
-            var doc = ((Form4)Application.OpenForms[0]).webBrowser1.Document;
-        }
-    }
+    copydirectory(folderpath, destinationpath, false); // use that function to copy the files
 }
-</code></pre>
 
-<p>But it's taking lot of time to get loaded in .NET browser and code seems to get hanged for a lot of time.
-Any solution please.</p>
+
+this above function serves this directory structure:
+
+
+  folder -> folder(s) -> file(s)
+
+
+i tried this and it didn't do what i want. i only retrieve all files while it searches all the subfolders. which is not what i want. i want to keep the subfolders and the original structure as it is. here i get four files instead of the directory structed as it is, subfolders and their subfolders, subfolders, files. only four because it removes duplicates which i do not want this to happen because i need all of them.
+
+here is my current structure(but my question is global to any directory):
+
+
+  folder -> folders -> folders + files
+
+
+here is what the below code does in the new path:
+
+
+  newfolder -> allfilesfoundinanysubfolder
+
+
+dialog.filename = dialog.filename.replace(".xml", ""); // get the destination path
+directoryinfo dirinfo = new directoryinfo(dialog.filename);
+
+if (dirinfo.exists == false)
+    directory.createdirectory(dialog.filename);
+
+list&lt;string&gt; everythinginthedirectory = directory
+                    .getfiles(filestructure.basesessionpath + "\\" + selectedsession.name, "*.*", searchoption.alldirectories).tolist(); // source
+
+foreach (string file in everythinginthedirectory)
+{
+    fileinfo mfile = new fileinfo(file);
+    // to remove name collusion
+    if (new fileinfo(dirinfo + "\\" + mfile.name).exists == false)
+        mfile.moveto(dirinfo + "\\" + mfile.name);
+}
+
+
+how to move the whole directory with unknown size and keep its structure as it is? not get only the files from a directory and move them!
