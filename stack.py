@@ -12,7 +12,6 @@ def data_cleaner(text):
     lower_case = text.lower()
 
     return re.sub(pattern_1, '', lower_case)
-  
 
 if __name__ == "__main__":
     url =  sys.argv[1]
@@ -23,5 +22,3 @@ if __name__ == "__main__":
     
     with open('body.txt', 'w', encoding='utf-8') as g:
         g.write(data_cleaner(str(question['body'])))
-
-

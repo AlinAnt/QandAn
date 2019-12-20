@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using QandAn.Data;
@@ -16,7 +11,6 @@ using Microsoft.Extensions.DependencyInjection;
 using static QandAn.Areas.Identity.Pages.Account.RegisterModel;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using QandAn.Services;
-using Microsoft.AspNetCore.Authentication.Facebook;
 
 namespace QandAn
 {
@@ -25,7 +19,6 @@ namespace QandAn
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-
         }
 
         public IConfiguration Configuration { get; }

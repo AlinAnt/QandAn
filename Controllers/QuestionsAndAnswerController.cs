@@ -56,7 +56,24 @@ namespace QandAn.Controllers
             return View(await question.Include(q => q.User).ToListAsync());
         }
         
+        [HttpPost]
+        public async void AddRating(int answerId, int value)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var answer = await _context.Answers.Include(a => a.Voting).Where(a => a.ID == answerId).FirstOrDefaultAsync();
+
+
+            if (!answer.Voting.ToList().Contains(user))
+            {
+                answer.Voting.Add(user);
+                answer.Rating += value;
+                await _context.SaveChangesAsync();
+            }
+            
+        }
         
+
+
         [HttpGet]
         public async Task<IActionResult> Details(int? id)
         {

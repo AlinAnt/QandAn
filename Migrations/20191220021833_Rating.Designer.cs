@@ -9,8 +9,8 @@ using QandAn.Data;
 namespace QandAn.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191212184247_dopquestion")]
-    partial class dopquestion
+    [Migration("20191220021833_Rating")]
+    partial class Rating
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -136,6 +136,8 @@ namespace QandAn.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
+                    b.Property<int?>("AnswerID");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
@@ -172,6 +174,8 @@ namespace QandAn.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AnswerID");
+
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
 
@@ -193,6 +197,8 @@ namespace QandAn.Migrations
                     b.Property<DateTime>("AnswerTime");
 
                     b.Property<int>("QuestionID");
+
+                    b.Property<int>("Rating");
 
                     b.Property<string>("UserId");
 
@@ -269,6 +275,13 @@ namespace QandAn.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("QandAn.Areas.Identity.Pages.Account.RegisterModel+AlinUser", b =>
+                {
+                    b.HasOne("QandAn.Models.Answer")
+                        .WithMany("Voting")
+                        .HasForeignKey("AnswerID");
                 });
 
             modelBuilder.Entity("QandAn.Models.Answer", b =>

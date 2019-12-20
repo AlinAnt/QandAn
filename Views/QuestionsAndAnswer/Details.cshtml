@@ -65,10 +65,16 @@ else {
         <ul id="answerList">
         @foreach (var ans in Model.Answers)
         {    
+           
             <ol class="breadcrumb">
+                 <div >
+                    <label id="@ans.ID"> @ans.Rating</label>
+                    <input type="button" onclick="change_rating(@ans.ID, 1)" id="negativeButton" value="+"/>
+                    <input type="button" id="positiveButton" onclick="change_rating(@ans.ID, -1)" value="-"/>
+                </div>
+
                 @ans.User.Name<br>
                 @ans.AnswerTime 
-               
                 <li class="breadcrumb-item active" aria-current="page" ><b>@ans.AnswerContent</b></li>
         
             @if(User.IsInRole("Admin"))
@@ -84,6 +90,19 @@ else {
 
 <script src="~/lib/signalr/dist/browser/signalr.js"></script>
 <script>
+
+    function change_rating(id, value){
+        document.getElementById(id.toString()).textContent = parseInt(document.getElementById(id.toString()).textContent, 10)
+                                                             + parseInt(value, 10);
+         
+        $.ajax({
+            url: '@Url.Action("AddRating")',
+            type:"POST",
+            data: { answerId: parseInt(id, 10), value: parseInt(value, 10)},
+            dataType: "text"
+        });  
+    }
+
     const hubConnection = new signalR.HubConnectionBuilder()
             .withUrl("/answerHub")
             .configureLogging(signalR.LogLevel.Information)
