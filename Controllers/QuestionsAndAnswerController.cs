@@ -44,18 +44,7 @@ namespace QandAn.Controllers
         public async Task<IActionResult> Index(string searchString)
         {
 
-            string[] roleNames = { "User", "Admin"};
-            IdentityResult roleResult;
-
-            foreach (var roleName in roleNames)
-            {   
-                //create the roles and seed them to the database:
-                var roleExist = await _roleManager.RoleExistsAsync(roleName);
-                if (!roleExist)
-                {  
-                    roleResult = await _roleManager.CreateAsync(new IdentityRole(roleName));
-                }
-            }
+            
             ViewData["Filter"] = searchString;
             var question = from s in _context.Questions
                             select s;

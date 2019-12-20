@@ -54,6 +54,7 @@ namespace QandAn
             
             services.AddTransient<StackService>();
             services.AddSingleton<IEmailSender, EmailSender>();
+            services.AddTransient<RolesImputerService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSignalR();
@@ -84,8 +85,7 @@ namespace QandAn
             {
                 routes.MapHub<AnswerHub>("/answerHub");
             });
-
-            
+        
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
