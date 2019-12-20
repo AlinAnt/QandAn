@@ -54,7 +54,8 @@ namespace QandAn
                 facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];  
                 facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];  
             });
-                       
+            
+            services.AddSingleton<StackService>();
             services.AddSingleton<IEmailSender, EmailSender>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSignalR();

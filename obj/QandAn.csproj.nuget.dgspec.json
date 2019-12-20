@@ -39,6 +39,14 @@
       "frameworks": {
         "netcoreapp2.2": {
           "dependencies": {
+            "DynamicLanguageRuntime": {
+              "target": "Package",
+              "version": "[1.2.2, )"
+            },
+            "IronPython": {
+              "target": "Package",
+              "version": "[2.7.9, )"
+            },
             "MailKit": {
               "target": "Package",
               "version": "[2.4.1, )"

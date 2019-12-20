@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2",
-    "signature": "3f49bf0d9f407a4d1dc04914d6619baa645830aa"
+    "signature": "e03c0e9b2ac822d03ee5d2f65bcc5a2e307458ee"
   },
   "compilationOptions": {
     "defines": [
@@ -24,6 +24,8 @@
     ".NETCoreApp,Version=v2.2": {
       "QandAn/1.0.0": {
         "dependencies": {
+          "DynamicLanguageRuntime": "1.2.2",
+          "IronPython": "2.7.9",
           "MailKit": "2.4.1",
           "Microsoft.AspNetCore.App": "2.2.0",
           "Microsoft.AspNetCore.Razor.Design": "2.2.0",
@@ -38,6 +40,57 @@
         },
         "compile": {
           "QandAn.dll": {}
+        }
+      },
+      "DynamicLanguageRuntime/1.2.2": {
+        "dependencies": {
+          "System.CodeDom": "4.5.0",
+          "System.Configuration.ConfigurationManager": "4.5.0"
+        },
+        "runtime": {
+          "lib/netcoreapp2.1/Microsoft.Dynamic.dll": {
+            "assemblyVersion": "1.2.2.0",
+            "fileVersion": "1.2.2.1000"
+          },
+          "lib/netcoreapp2.1/Microsoft.Scripting.Metadata.dll": {
+            "assemblyVersion": "1.2.2.0",
+            "fileVersion": "1.2.2.1000"
+          },
+          "lib/netcoreapp2.1/Microsoft.Scripting.dll": {
+            "assemblyVersion": "1.2.2.0",
+            "fileVersion": "1.2.2.1000"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp2.1/Microsoft.Dynamic.dll": {},
+          "lib/netcoreapp2.1/Microsoft.Scripting.Metadata.dll": {},
+          "lib/netcoreapp2.1/Microsoft.Scripting.dll": {}
+        }
+      },
+      "IronPython/2.7.9": {
+        "dependencies": {
+          "DynamicLanguageRuntime": "1.2.2",
+          "Microsoft.Win32.Registry": "4.5.0",
+          "System.Text.Encoding.CodePages": "4.5.0"
+        },
+        "runtime": {
+          "lib/netcoreapp2.1/IronPython.Modules.dll": {
+            "assemblyVersion": "2.7.9.0",
+            "fileVersion": "2.7.9.1000"
+          },
+          "lib/netcoreapp2.1/IronPython.SQLite.dll": {
+            "assemblyVersion": "2.7.9.0",
+            "fileVersion": "2.7.9.1000"
+          },
+          "lib/netcoreapp2.1/IronPython.dll": {
+            "assemblyVersion": "2.7.9.0",
+            "fileVersion": "2.7.9.1000"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp2.1/IronPython.Modules.dll": {},
+          "lib/netcoreapp2.1/IronPython.SQLite.dll": {},
+          "lib/netcoreapp2.1/IronPython.dll": {}
         }
       },
       "MailKit/2.4.1": {
@@ -604,6 +657,17 @@
           "lib/netstandard1.1/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
+      "System.CodeDom/4.5.0": {
+        "runtime": {
+          "lib/netstandard2.0/System.CodeDom.dll": {
+            "assemblyVersion": "4.0.1.0",
+            "fileVersion": "4.6.26515.6"
+          }
+        },
+        "compile": {
+          "ref/netstandard2.0/System.CodeDom.dll": {}
+        }
+      },
       "System.Collections.Immutable/1.5.0": {},
       "System.Composition/1.0.31": {
         "dependencies": {
@@ -728,6 +792,21 @@
           "lib/netstandard1.0/System.Composition.TypedParts.dll": {}
         }
       },
+      "System.Configuration.ConfigurationManager/4.5.0": {
+        "dependencies": {
+          "System.Security.Cryptography.ProtectedData": "4.5.0",
+          "System.Security.Permissions": "4.5.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Configuration.ConfigurationManager.dll": {
+            "assemblyVersion": "4.0.1.0",
+            "fileVersion": "4.6.26515.6"
+          }
+        },
+        "compile": {
+          "ref/netstandard2.0/System.Configuration.ConfigurationManager.dll": {}
+        }
+      },
       "System.Data.Common/4.3.0": {
         "dependencies": {
           "System.Collections": "4.3.0",
@@ -844,6 +923,22 @@
           "runtime/win/lib/_._": {
             "rid": "win",
             "assetType": "runtime"
+          }
+        }
+      },
+      "System.Security.Cryptography.ProtectedData/4.5.0": {
+        "runtime": {
+          "lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll": {
+            "assemblyVersion": "4.0.3.0",
+            "fileVersion": "4.6.26515.6"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "4.0.3.0",
+            "fileVersion": "4.6.26515.6"
           }
         }
       },
@@ -3936,6 +4031,20 @@
       "serviceable": false,
       "sha512": ""
     },
+    "DynamicLanguageRuntime/1.2.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-xNsMK0WWX85K5CNIIdjiHa3Va6hIZA5/GRBoMYG7KJ+iU6pCFFJMmq/EL0QjHmzWO14PQqviIZ0JQHCArv4gjQ==",
+      "path": "dynamiclanguageruntime/1.2.2",
+      "hashPath": "dynamiclanguageruntime.1.2.2.nupkg.sha512"
+    },
+    "IronPython/2.7.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-CXQT1XUPKapVZ1r4coR+lFlC1FEsI4sDJg/9iSug/fUnWuYZ8APAPFutPG09T2uwcsWk40s4ckqO27/dbsA6lw==",
+      "path": "ironpython/2.7.9",
+      "hashPath": "ironpython.2.7.9.nupkg.sha512"
+    },
     "MailKit/2.4.1": {
       "type": "package",
       "serviceable": true,
@@ -4230,6 +4339,13 @@
       "path": "sqlitepclraw.provider.e_sqlite3.netstandard11/1.1.12",
       "hashPath": "sqlitepclraw.provider.e_sqlite3.netstandard11.1.1.12.nupkg.sha512"
     },
+    "System.CodeDom/4.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-gqpR1EeXOuzNQWL7rOzmtdIz3CaXVjSQCiaGOs2ivjPwynKSJYm39X81fdlp7WuojZs/Z5t1k5ni7HtKQurhjw==",
+      "path": "system.codedom/4.5.0",
+      "hashPath": "system.codedom.4.5.0.nupkg.sha512"
+    },
     "System.Collections.Immutable/1.5.0": {
       "type": "package",
       "serviceable": true,
@@ -4279,6 +4395,13 @@
       "path": "system.composition.typedparts/1.0.31",
       "hashPath": "system.composition.typedparts.1.0.31.nupkg.sha512"
     },
+    "System.Configuration.ConfigurationManager/4.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-UIFvaFfuKhLr9u5tWMxmVoDPkFeD+Qv8gUuap4aZgVGYSYMdERck4OhLN/2gulAc0nYTEigWXSJNNWshrmxnng==",
+      "path": "system.configuration.configurationmanager/4.5.0",
+      "hashPath": "system.configuration.configurationmanager.4.5.0.nupkg.sha512"
+    },
     "System.Data.Common/4.3.0": {
       "type": "package",
       "serviceable": true,
@@ -4320,6 +4443,13 @@
       "sha512": "sha512-xT2jbYpbBo3ha87rViHoTA6WdvqOAW37drmqyx/6LD8p7HEPT2qgdxoimRzWtPg8Jh4X5G9BV2seeTv4x6FYlA==",
       "path": "system.net.security/4.3.2",
       "hashPath": "system.net.security.4.3.2.nupkg.sha512"
+    },
+    "System.Security.Cryptography.ProtectedData/4.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-wLBKzFnDCxP12VL9ANydSYhk59fC4cvOr9ypYQLPnAj48NQIhqnjdD2yhP8yEKyBJEjERWS9DisKL7rX5eU25Q==",
+      "path": "system.security.cryptography.protecteddata/4.5.0",
+      "hashPath": "system.security.cryptography.protecteddata.4.5.0.nupkg.sha512"
     },
     "System.Threading.ThreadPool/4.3.0": {
       "type": "package",

@@ -17,6 +17,7 @@
 /home/alina/QandAn/obj/Debug/netcoreapp2.2/QandAn.RazorCoreGenerate.cache
 /home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Areas/Identity/Pages/Account/ConfirmEmail.g.cshtml.cs
 /home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Areas/Identity/Pages/Account/ExternalLogin.g.cshtml.cs
+/home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Areas/Identity/Pages/Account/ForgotPassword.g.cshtml.cs
 /home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Areas/Identity/Pages/Account/Login.g.cshtml.cs
 /home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Areas/Identity/Pages/Account/Logout.g.cshtml.cs
 /home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Areas/Identity/Pages/Account/Manage/EnableAuthenticator.g.cshtml.cs
@@ -36,6 +37,7 @@
 /home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Views/QuestionsAndAnswer/DeleteAnswer.g.cshtml.cs
 /home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Views/QuestionsAndAnswer/Details.g.cshtml.cs
 /home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Views/QuestionsAndAnswer/Edit.g.cshtml.cs
+/home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Views/QuestionsAndAnswer/Import.g.cshtml.cs
 /home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Views/QuestionsAndAnswer/Index.g.cshtml.cs
 /home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Views/Shared/Error.g.cshtml.cs
 /home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_CookieConsentPartial.g.cshtml.cs
@@ -50,4 +52,3 @@
 /home/alina/QandAn/obj/Debug/netcoreapp2.2/QandAn.dll
 /home/alina/QandAn/obj/Debug/netcoreapp2.2/QandAn.pdb
 /home/alina/QandAn/obj/Debug/netcoreapp2.2/QandAn.csproj.CopyComplete
-/home/alina/QandAn/obj/Debug/netcoreapp2.2/Razor/Areas/Identity/Pages/Account/ForgotPassword.g.cshtml.cs

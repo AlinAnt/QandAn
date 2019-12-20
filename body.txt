@@ -1,0 +1,39 @@
+<p>I am trying to scrape below url:</p>
+
+<p><a href="https://threatmap.checkpoint.com/ThreatPortal/livemap.html" rel="nofollow noreferrer">https://threatmap.checkpoint.com/ThreatPortal/livemap.html</a></p>
+
+<p>I am scraping ATTACKS TODAY i.e shown in no as 952,xxx.</p>
+
+<p>I wrote below code in C#</p>
+
+<pre><code>  public partial class Form4 : Form
+{
+    public Form4()
+    {
+        InitializeComponent();
+        this.webBrowser1.ObjectForScripting = new MyScript();
+    }
+
+    private void Form4_Load(object sender, EventArgs e)
+    {
+        webBrowser1.Navigate("https://threatmap.checkpoint.com/ThreatPortal/livemap.html");
+    }
+
+    private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+    {
+        webBrowser1.Navigate("javascript: window.external.CallServerSideCode();");
+    }
+
+    [ComVisible(true)]
+    public class MyScript
+    {
+        public void CallServerSideCode()
+        {
+            var doc = ((Form4)Application.OpenForms[0]).webBrowser1.Document;
+        }
+    }
+}
+</code></pre>
+
+<p>But it's taking lot of time to get loaded in .NET browser and code seems to get hanged for a lot of time.
+Any solution please.</p>
