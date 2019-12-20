@@ -68,9 +68,8 @@ namespace QandAn.Controllers
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || !_dbContext.Questions.Any(q => q.ID == id))
-            {
                 return NotFound();
-            }
+            
 
             var question = await _databaseService.GetQuestionById(id);
                             

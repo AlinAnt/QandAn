@@ -28,9 +28,8 @@ namespace QandAn.Controllers
         public async Task<IActionResult> Index(int? id)
         {
             if (id == null || !_dbContext.Questions.Any(q => q.ID == id))
-            {
                 return NotFound();
-            }
+            
             var question = await _databaseService.GetQuestionById(id);
 
             return View(question);
@@ -40,9 +39,7 @@ namespace QandAn.Controllers
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null && !_dbContext.Questions.Any(q => q.ID == id))
-            {
                 return NotFound();
-            }
 
             var question = await _databaseService.GetQuestionById(id);
             return View(question);
@@ -53,9 +50,8 @@ namespace QandAn.Controllers
         public async Task<IActionResult> Edit([Bind("ID,QuestionTitle, QuestionContent")] Question question)
         {
             if (!_dbContext.Questions.Any(q => q.ID ==question.ID))
-            {   
                 return NotFound();
-            }
+        
 
             var tempQuestion = await _databaseService.GetQuestionById(question.ID);
             var user = await _userManager.GetUserAsync(User);
