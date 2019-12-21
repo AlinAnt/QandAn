@@ -70,7 +70,6 @@ namespace QandAn.Controllers
             if (id == null || !_dbContext.Questions.Any(q => q.ID == id))
                 return NotFound();
             
-
             var question = await _databaseService.GetQuestionById(id);
                             
             return View(question);

@@ -49,7 +49,7 @@ namespace QandAn.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit([Bind("ID,QuestionTitle, QuestionContent")] Question question)
         {
-            if (!_dbContext.Questions.Any(q => q.ID ==question.ID))
+            if (!_dbContext.Questions.Any(q => q.ID == question.ID))
                 return NotFound();
         
 
@@ -123,7 +123,7 @@ namespace QandAn.Controllers
             var user = await _userManager.GetUserAsync(User);
             var is_admin =  await _userManager.IsInRoleAsync(user, "Admin");
 
-            if ((answer.UserId == user.Id) || is_admin)
+            if (is_admin || (answer.UserId == user.Id))
             {
                 _dbContext.Answers.Remove(answer);
                 await _dbContext.SaveChangesAsync();

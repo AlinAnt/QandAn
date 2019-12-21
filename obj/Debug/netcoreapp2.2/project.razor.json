@@ -3021,23 +3021,8 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/home/alina/QandAn/Views/QuestionsAndAnswer/Create.cshtml",
-      "TargetPath": "Views/QuestionsAndAnswer/Create.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "/home/alina/QandAn/Views/QuestionImport/Index.cshtml",
       "TargetPath": "Views/QuestionImport/Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/home/alina/QandAn/Views/QuestionsAndAnswer/Import.cshtml",
-      "TargetPath": "Views/QuestionsAndAnswer/Import.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/home/alina/QandAn/Views/QuestionsAndAnswer/Delete.cshtml",
-      "TargetPath": "Views/QuestionsAndAnswer/Delete.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -3048,11 +3033,6 @@
     {
       "FilePath": "/home/alina/QandAn/Views/QuestionList/Create.cshtml",
       "TargetPath": "Views/QuestionList/Create.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/home/alina/QandAn/Views/QuestionsAndAnswer/Index.cshtml",
-      "TargetPath": "Views/QuestionsAndAnswer/Index.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -3101,11 +3081,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/home/alina/QandAn/Views/QuestionsAndAnswer/Details.cshtml",
-      "TargetPath": "Views/QuestionsAndAnswer/Details.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "/home/alina/QandAn/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml",
       "TargetPath": "Areas/Identity/Pages/_ValidationScriptsPartial.cshtml",
       "FileKind": "mvc"
@@ -3133,16 +3108,6 @@
     {
       "FilePath": "/home/alina/QandAn/Areas/Identity/Pages/Account/ForgotPassword.cshtml",
       "TargetPath": "Areas/Identity/Pages/Account/ForgotPassword.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/home/alina/QandAn/Views/QuestionsAndAnswer/DeleteAnswer.cshtml",
-      "TargetPath": "Views/QuestionsAndAnswer/DeleteAnswer.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/home/alina/QandAn/Views/QuestionsAndAnswer/Edit.cshtml",
-      "TargetPath": "Views/QuestionsAndAnswer/Edit.cshtml",
       "FileKind": "mvc"
     },
     {

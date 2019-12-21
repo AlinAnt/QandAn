@@ -24,8 +24,7 @@ public class DatabaseService
 
     public Task<Answer> GetAnswerById(int id){
         return _dbContext.Answers
-                         .Include(u => u.Question)
-                         .ThenInclude(q => q.Answers)
+                         .Include(u => u.Question) // Here 
                          .Include(u => u.User)
                          .Include(a => a.Voting)
                          .Where(a => a.ID == id)
