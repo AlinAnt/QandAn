@@ -16,6 +16,7 @@ public class DatabaseService
     public Task<Question> GetQuestionById(int? id)
     {
         return _dbContext.Questions
+                         .Include(q => q.User)
                          .Include(u => u.Answers)
                          .ThenInclude(u => u.User)
                          .Where(d => d.ID == id)

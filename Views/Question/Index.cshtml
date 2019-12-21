@@ -134,11 +134,17 @@ else {
        
         var ol = document.createElement("ol");
         ol.className = "breadcrumb"
-        ol.innerHTML = `
-                ${username}<br>
-                ${datetime}
-                &nbsp
-                <li style="color:black;"><b>${answer}</b></li>`
+        ol.innerHTML = 
+                `   &nbsp;
+                    ${username}<br>
+                   c
+                    <li class="breadcrumb-item active" aria-current="page" ><b>${answer}</b></li>
+            
+                    @if(User.IsInRole("Admin"))
+                    {
+                        <a class="btn btn-warning btn-sm" style="display: block; margin-left:auto; " asp-action="DeleteAnswer"><b>Delete</b></a>
+                    }
+                `
         
         document.getElementById("answerList").appendChild(ol);
        
